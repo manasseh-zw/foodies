@@ -123,7 +123,7 @@ export function NavbarWithMenu({
     <div className="sticky top-0 z-50 w-full pt-4 px-4">
       <header
         className={cn(
-          'relative bg-secondary text-secondary-foreground rounded-2xl',
+          'relative bg-secondary text-secondary-foreground rounded-lg md:rounded-2xl',
           className,
         )}
       >

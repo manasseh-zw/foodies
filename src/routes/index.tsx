@@ -7,15 +7,16 @@ export const Route = createFileRoute('/')({ component: App })
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-primary relative">
+    <div className="min-h-screen h-full flex flex-col bg-primary relative">
       <div
-        className="absolute inset-0 opacity-[0.07] pointer-events-none"
+        className="absolute inset-0 opacity-[0.07] pointer-events-none h-full"
         style={{
           backgroundImage: 'url(/assets/doodle.svg)',
-          backgroundSize: '120% auto',
+          backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
-          minHeight: '100vh',
+          minWidth: '100%',
+          minHeight: '100%',
         }}
       />
       <div className="relative z-10">
