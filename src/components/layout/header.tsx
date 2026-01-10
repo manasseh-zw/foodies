@@ -1,11 +1,128 @@
 import { cn } from "@/lib/utils"
 import { Logo } from "@/components/logo"
+import { NavbarWithMenu, NavbarMenuSection } from "@/components/ui/navbar-menu"
+import { HugeiconsIcon } from "@hugeicons/react"
+import {
+  Store01Icon,
+  DeliveryTruck01Icon,
+  Time01Icon,
+  GiftCardIcon,
+  ShoppingBagIcon,
+  SaleTag01Icon,
+  RestaurantTableIcon,
+  CoffeeBeansIcon,
+  DrinkIcon,
+  IceCreamIcon,
+  BookOpen01Icon,
+  ChefHatIcon,
+  StarIcon,
+} from "@hugeicons/core-free-icons"
+import { Button } from "@/components/ui/button"
 
-const navLinks = [
-  { label: "Home", href: "#" },
-  { label: "Menu", href: "#menu" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+const sections: NavbarMenuSection[] = [
+  {
+    id: "locations",
+    gridLayout: "grid grid-cols-3 gap-4",
+    links: [
+      {
+        label: "Find Restaurant",
+        href: "/locations",
+        description: "Locate our nearest restaurant",
+        icon: <HugeiconsIcon icon={Store01Icon} size={20} />,
+      },
+      {
+        label: "Delivery Areas",
+        href: "/delivery",
+        description: "Check if we deliver to you",
+        icon: <HugeiconsIcon icon={DeliveryTruck01Icon} size={20} />,
+      },
+      {
+        label: "Store Hours",
+        href: "/hours",
+        description: "Opening times and holidays",
+        icon: <HugeiconsIcon icon={Time01Icon} size={20} />,
+      },
+    ],
+  },
+  {
+    id: "shop",
+    gridLayout: "grid grid-cols-3 gap-4",
+    links: [
+      {
+        label: "Gift Cards",
+        href: "/gift-cards",
+        description: "Perfect for food lovers",
+        icon: <HugeiconsIcon icon={GiftCardIcon} size={20} />,
+      },
+      {
+        label: "Merchandise",
+        href: "/merchandise",
+        description: "Shop our branded items",
+        icon: <HugeiconsIcon icon={ShoppingBagIcon} size={20} />,
+      },
+      {
+        label: "Special Offers",
+        href: "/offers",
+        description: "Current deals and promotions",
+        icon: <HugeiconsIcon icon={SaleTag01Icon} size={20} />,
+      },
+    ],
+  },
+  {
+    id: "menu",
+    gridLayout: "grid grid-cols-2 grid-rows-2 gap-4",
+    links: [
+      {
+        label: "Featured Dishes",
+        href: "/menu/featured",
+        description: "Chef's recommendations",
+        rowSpan: 2,
+        icon: <HugeiconsIcon icon={RestaurantTableIcon} size={20} />,
+      },
+      {
+        label: "Seasonal Specials",
+        href: "/menu/seasonal",
+        description: "Limited time offerings",
+        icon: <HugeiconsIcon icon={CoffeeBeansIcon} size={20} />,
+      },
+      {
+        label: "Drinks",
+        href: "/menu/drinks",
+        description: "Beverages and cocktails",
+        icon: <HugeiconsIcon icon={DrinkIcon} size={20} />,
+      },
+      {
+        label: "Desserts",
+        href: "/menu/desserts",
+        description: "Sweet endings",
+        icon: <HugeiconsIcon icon={IceCreamIcon} size={20} />,
+      },
+    ],
+  },
+  {
+    id: "about",
+    gridLayout: "grid grid-cols-3 gap-4",
+    links: [
+      {
+        label: "Our Story",
+        href: "/about",
+        description: "Learn about our journey",
+        icon: <HugeiconsIcon icon={BookOpen01Icon} size={20} />,
+      },
+      {
+        label: "Chef Team",
+        href: "/chefs",
+        description: "Meet our culinary experts",
+        icon: <HugeiconsIcon icon={ChefHatIcon} size={20} />,
+      },
+      {
+        label: "Reviews",
+        href: "/reviews",
+        description: "What people are saying",
+        icon: <HugeiconsIcon icon={StarIcon} size={20} />,
+      },
+    ],
+  },
 ]
 
 interface HeaderProps {
@@ -14,63 +131,15 @@ interface HeaderProps {
 
 export function Header({ className }: HeaderProps) {
   return (
-    <header
-      className={cn(
-        "bg-secondary text-secondary-foreground",
-        className
-      )}
-    >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Left nav links */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.slice(0, 2).map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium hover:text-primary transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Centered Logo */}
-          <Logo className="text-2xl text-secondary-foreground" />
-
-          {/* Right nav links */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.slice(2).map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium hover:text-primary transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* Mobile menu button */}
-          <button className="md:hidden text-secondary-foreground">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </header>
+    <NavbarWithMenu
+      sections={sections}
+      logo={<Logo className="text-3xl text-secondary-foreground" />}
+      ctaButton={
+        <a href="/contact">
+          <Button variant="default" size="default">Contact</Button>
+        </a>
+      }
+      className={className}
+    />
   )
 }
