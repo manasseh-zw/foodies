@@ -1,8 +1,8 @@
 'use client'
 
-import * as React from 'react'
-import { motion, AnimatePresence } from 'motion/react'
 import { cn } from '@/lib/utils'
+import { AnimatePresence, motion } from 'motion/react'
+import * as React from 'react'
 
 export interface NavbarMenuLink {
   label: string
@@ -120,7 +120,7 @@ export function NavbarWithMenu({
   const [activeMenu, setActiveMenu] = React.useState<string | null>(null)
 
   return (
-    <div className="sticky top-0 z-50 w-full pt-4 px-4">
+    <div className="sticky top-0 z-50 w-full pt-4 px-3 sm:px-5 ">
       <header
         className={cn(
           'relative bg-secondary text-secondary-foreground rounded-lg md:rounded-2xl',

@@ -1,13 +1,13 @@
-import { createFileRoute } from '@tanstack/react-router'
 import { Header } from '@/components/layout/header'
 import { Button } from '@/components/ui/button'
 import { RatingBadge } from '@/components/ui/rating-badge'
+import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({ component: App })
 
 function App() {
   return (
-    <div className="min-h-screen h-full flex flex-col bg-primary relative">
+    <div className="min-h-full flex flex-col bg-primary relative">
       <div
         className="absolute inset-0 opacity-[0.07] pointer-events-none h-full"
         style={{
@@ -24,11 +24,11 @@ function App() {
 
         {/* Hero Section */}
         <section className="flex-1">
-          <div className="container mx-auto px-6 py-12 md:py-20">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          <div className="container mx-auto px-6 py-8 sm:py-12 md:py-16">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-0">
               {/* Left side - Text content */}
-              <div className="flex-1 text-center md:text-left">
-                <h1 className="font-serif text-4xl md:text-5xl lg:text-8xl font-bold text-primary-foreground leading-tight mb-6">
+              <div className="flex-1 text-center md:text-left relative z-20 md:-mr-24 lg:mr-1">
+                <h1 className="font-serif text-5xl sm:text-5xl lg:text-8xl font-semibold text-primary-foreground leading-none mb-6">
                   Good Bites,
                   <br />
                   Good Vibes
@@ -51,11 +51,11 @@ function App() {
               </div>
 
               {/* Right side - Burger image */}
-              <div className="flex-1 flex justify-center md:justify-end md:pr-0 md:-mr-8 lg:-mr-16">
+              <div className="flex-1 md:flex-[1.2] flex justify-center md:justify-end md:pr-0 relative">
                 <img
-                  src="/assets/burger.png"
+                  src="/assets/burger&fries&callout.png"
                   alt="Delicious burger"
-                  className="w-full max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl object-contain"
+                  className="w-full md:min-w-[120%] max-w-none md:-mr-[20%] object-contain"
                 />
               </div>
             </div>
