@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       {/* Hero Section - Full viewport height */}
-      <div className="min-h-screen flex flex-col bg-primary relative">
+      <div className=" flex flex-col bg-primary relative">
         <div
           className="absolute inset-0 opacity-[0.07] pointer-events-none"
           style={{
@@ -20,10 +20,9 @@ function App() {
             backgroundPosition: 'center',
           }}
         />
+        <Header />
         <div className="relative z-10 flex flex-col flex-1">
-          <Header />
-
-          <section className="flex-1 flex items-center pb-24 sm:pb-28 md:pb-32">
+          <section className="flex-1 flex items-center pt-20 pb-24 sm:pb-28 md:pb-32">
             <div className="container mx-auto px-6">
               <div className="flex flex-col md:flex-row items-center gap-8 md:gap-0">
                 {/* Left side - Text content */}

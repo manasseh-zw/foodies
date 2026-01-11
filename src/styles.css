@@ -269,7 +269,7 @@
   body {
     @apply font-sans bg-background text-foreground;
     letter-spacing: var(--tracking-normal);
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.75rem;
   }
   html {
