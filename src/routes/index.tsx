@@ -23,7 +23,7 @@ function App() {
         <Header />
         <div className="relative z-10 flex flex-col flex-1">
           <section className="flex-1 flex items-center pt-20 pb-24 sm:pb-28 md:pb-32">
-            <div className="container mx-auto px-6">
+            <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-24">
               <div className="flex flex-col md:flex-row items-center gap-8 md:gap-0">
                 {/* Left side - Text content */}
                 <div className="flex-1 text-center md:text-left relative z-20 md:-mr-24 lg:mr-1">

@@ -180,7 +180,7 @@ function MenuCarousel({ className }: { className?: string }) {
                 return (
                   <div
                     key={item.uniqueId}
-                    className="flex-none pl-[var(--slide-gap)] w-[300px] sm:w-[340px] md:w-[380px] lg:w-[340px]"
+                    className="flex-none pl-(--slide-gap) w-[85vw] sm:w-[340px] md:w-[380px] lg:w-[340px]"
                   >
                     <MenuItemCard item={item} isActive={isActive} />
                   </div>
@@ -230,13 +230,13 @@ function MenuCarousel({ className }: { className?: string }) {
             </Button>
 
             {/* Spacer */}
-            <div className="w-6" />
+            <div className="w-6 hidden sm:block" />
 
             {/* View All Button */}
             <Button
               variant="ghost"
               size="sm"
-              className="bg-white hover:bg-white/90 text-black rounded-sm h-8 px-3 gap-1 text-xs font-bold"
+              className="hidden sm:flex bg-white hover:bg-white/90 text-black rounded-sm h-8 px-3 gap-1 text-xs font-bold"
             >
               View All
               <ChevronRight className="size-3" />
