@@ -1,5 +1,3 @@
-'use client'
-
 import * as React from 'react'
 import { motion, type Transition } from 'motion/react'
 import useEmblaCarousel from 'embla-carousel-react'
