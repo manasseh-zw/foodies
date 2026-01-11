@@ -4,7 +4,7 @@ import * as React from 'react'
 import { motion, type Transition } from 'motion/react'
 import useEmblaCarousel from 'embla-carousel-react'
 import type { EmblaCarouselType } from 'embla-carousel'
-import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/animate-ui/button'
@@ -96,41 +96,29 @@ function useCarouselControls(
 
 type DotButtonProps = {
   selected?: boolean
-  label: string
   onClick: () => void
 }
 
-function DotButton({ selected = false, label, onClick }: DotButtonProps) {
+function DotButton({ selected = false, onClick }: DotButtonProps) {
   return (
     <motion.button
       type="button"
       onClick={onClick}
       layout
       initial={false}
-      className="flex cursor-pointer select-none items-center justify-center rounded-lg border-none bg-secondary-foreground/20 text-secondary-foreground text-sm"
+      className={cn(
+        'flex cursor-pointer select-none items-center justify-center rounded-full border-none transition-all duration-300',
+        selected
+          ? 'bg-white w-6 h-2.5'
+          : 'bg-white/20 hover:bg-white/40 w-2.5 h-2.5',
+      )}
       animate={{
-        width: selected ? 72 : 10,
-        height: selected ? 28 : 10,
-        backgroundColor: selected
-          ? 'var(--color-primary)'
-          : 'rgba(255,255,255,0.2)',
+        width: selected ? 24 : 10,
+        height: 10,
+        opacity: selected ? 1 : 0.5,
       }}
       transition={transition}
-    >
-      <motion.span
-        layout
-        initial={false}
-        className="block whitespace-nowrap px-3 py-1 text-primary-foreground"
-        animate={{
-          opacity: selected ? 1 : 0,
-          scale: selected ? 1 : 0,
-          filter: selected ? 'blur(0)' : 'blur(4px)',
-        }}
-        transition={transition}
-      >
-        {label}
-      </motion.span>
-    </motion.button>
+    />
   )
 }
 
@@ -147,22 +135,31 @@ function MenuCarousel({ className }: { className?: string }) {
 
   const {
     selectedIndex,
-    scrollSnaps,
-    prevDisabled,
-    nextDisabled,
-    onDotClick,
+    scrollSnaps, // eslint-disable-line @typescript-eslint/no-unused-vars
+    prevDisabled, // eslint-disable-line @typescript-eslint/no-unused-vars
+    nextDisabled, // eslint-disable-line @typescript-eslint/no-unused-vars
+    onDotClick, // eslint-disable-line @typescript-eslint/no-unused-vars
     onPrev,
     onNext,
   } = useCarouselControls(emblaApi)
 
   const currentCategory = menuCategories.find((c) => c.id === activeCategory)
-  const items = currentCategory?.items ?? []
+  const baseItems = currentCategory?.items ?? []
+
+  // Duplicate items to ensure smooth infinite scrolling (3x)
+  const items = React.useMemo(() => {
+    if (baseItems.length === 0) return []
+    return [...baseItems, ...baseItems, ...baseItems].map((item, index) => ({
+      ...item,
+      uniqueId: `${item.id}-${index}`,
+    }))
+  }, [baseItems])
 
   React.useEffect(() => {
     if (emblaApi) {
-      emblaApi.scrollTo(0, true)
+      emblaApi.scrollTo(baseItems.length, false) // Start at the middle set
     }
-  }, [activeCategory, emblaApi])
+  }, [activeCategory, emblaApi, baseItems.length])
 
   return (
     <div className={cn('w-full', className)}>
@@ -172,9 +169,9 @@ function MenuCarousel({ className }: { className?: string }) {
       </div>
 
       {/* Main carousel container */}
-      <div className="bg-accent py-6 sm:py-8">
+      <div className="bg-accent py-10 sm:py-12 ">
         {/* Tabs */}
-        <div className="flex justify-center mb-6 px-4">
+        <div className="flex justify-center mb-8 sm:mb-12 px-4">
           <MenuTabs
             categories={menuCategories}
             activeCategory={activeCategory}
@@ -183,15 +180,15 @@ function MenuCarousel({ className }: { className?: string }) {
         </div>
 
         {/* Carousel content */}
-        <div className="relative [--slide-gap:1rem] sm:[--slide-gap:1.5rem]">
+        <div className="relative [--slide-gap:1.5rem] sm:[--slide-gap:2rem]">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex touch-pan-y touch-pinch-zoom ml-[calc(var(--slide-gap)*-1)]">
               {items.map((item, index) => {
                 const isActive = index === selectedIndex
                 return (
                   <div
-                    key={item.id}
-                    className="flex-none pl-[var(--slide-gap)] w-[260px] sm:w-[280px] md:w-[300px] lg:w-[280px]"
+                    key={item.uniqueId}
+                    className="flex-none pl-[var(--slide-gap)] w-[300px] sm:w-[340px] md:w-[380px] lg:w-[340px]"
                   >
                     <MenuItemCard item={item} isActive={isActive} />
                   </div>
@@ -202,48 +199,55 @@ function MenuCarousel({ className }: { className?: string }) {
         </div>
 
         {/* Carousel controller */}
-        <div className="flex justify-center mt-8 px-4">
-          <div className="inline-flex items-center gap-3 bg-secondary text-secondary-foreground rounded-xl px-4 py-2.5">
+        <div className="flex justify-center mt-8 sm:mt-10 px-4">
+          <div className="inline-flex items-center bg-[#1a1a1a] rounded-2xl p-1 shadow-2xl">
+            {/* Prev Button */}
             <Button
               size="icon-sm"
               variant="ghost"
               onClick={onPrev}
-              disabled={prevDisabled}
-              className="text-secondary-foreground hover:bg-secondary-foreground/10 rounded-lg"
+              className="bg-white hover:bg-white/90 text-black rounded-xl h-10 w-10 p-0 mr-3"
             >
               <ChevronLeft className="size-5" />
             </Button>
 
-            <div className="flex items-center gap-2">
-              {scrollSnaps.map((_, index) => (
+            {/* Dots */}
+            <div className="flex items-center gap-1.5 mx-1">
+              {baseItems.map((_, index) => (
                 <DotButton
                   key={index}
-                  label={`Slide ${index + 1}`}
-                  selected={index === selectedIndex}
-                  onClick={() => onDotClick(index)}
+                  selected={index === selectedIndex % baseItems.length}
+                  onClick={() => {
+                    // Find the closest instance of this index
+                    if (!emblaApi) return
+                    const targetIndex = index + baseItems.length // Target the middle set
+                    emblaApi.scrollTo(targetIndex)
+                  }}
                 />
               ))}
             </div>
 
+            {/* Next Button */}
             <Button
               size="icon-sm"
               variant="ghost"
               onClick={onNext}
-              disabled={nextDisabled}
-              className="text-secondary-foreground hover:bg-secondary-foreground/10 rounded-lg"
+              className="bg-white hover:bg-white/90 text-black rounded-xl h-10 w-10 p-0 ml-3"
             >
               <ChevronRight className="size-5" />
             </Button>
 
-            <div className="w-px h-6 bg-secondary-foreground/20" />
+            {/* Spacer */}
+            <div className="w-8" />
 
+            {/* View All Button */}
             <Button
               variant="ghost"
               size="sm"
-              className="text-secondary-foreground hover:bg-secondary-foreground/10 gap-1.5"
+              className="bg-white hover:bg-white/90 text-black rounded-xl h-10 px-4 gap-1 text-sm font-bold"
             >
               View All
-              <Sparkles className="size-4" />
+              <ChevronRight className="size-4" />
             </Button>
           </div>
         </div>

@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import { motion } from 'motion/react'
 import { cn } from '@/lib/utils'
 import type { MenuItem } from './menu-data'
@@ -19,7 +18,7 @@ function MenuItemCard({
   return (
     <motion.div
       className={cn(
-        'relative flex flex-col items-center p-5 rounded-xl bg-card transition-colors w-full',
+        'relative flex flex-col items-center p-4 rounded-xl bg-card transition-colors w-full',
         className,
       )}
       initial={false}
@@ -59,7 +58,7 @@ function MenuItemCard({
       </div>
 
       {/* Food image */}
-      <div className="relative z-10 w-full aspect-square flex items-center justify-center mb-3">
+      <div className="relative z-10 w-full aspect-square flex items-center justify-center mb-2">
         <motion.img
           src={item.image}
           alt={item.name}
@@ -78,17 +77,17 @@ function MenuItemCard({
       </div>
 
       {/* Item name */}
-      <h3 className="relative z-10 font-display text-sm sm:text-base md:text-lg font-bold text-center text-card-foreground uppercase tracking-wide leading-tight">
+      <h3 className="relative z-10 font-display text-base sm:text-lg md:text-xl font-bold text-center text-card-foreground uppercase tracking-wide leading-tight">
         {item.name}
       </h3>
 
       {/* Tags */}
       {item.tags && item.tags.length > 0 && (
-        <div className="relative z-10 flex flex-wrap justify-center gap-1.5 mt-3">
+        <div className="relative z-10 flex flex-wrap justify-center gap-1.5 mt-2">
           {item.tags.map((tag) => (
             <span
               key={tag}
-              className="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-lg bg-primary/20 text-primary-foreground"
+              className="inline-flex items-center gap-1 text-xs sm:text-sm px-2.5 py-1 rounded-lg bg-primary/20 text-primary-foreground"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-primary" />
               {tag}
@@ -110,7 +109,7 @@ function MenuItemCard({
           damping: 20,
         }}
       >
-        <span className="font-display text-lg sm:text-xl font-bold text-secondary">
+        <span className="font-display text-xl sm:text-2xl font-bold text-secondary">
           {item.price}
         </span>
       </motion.div>
