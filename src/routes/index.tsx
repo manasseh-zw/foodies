@@ -8,7 +8,7 @@ export const Route = createFileRoute('/')({ component: App })
 
 function App() {
   return (
-    <div className="min-h-full flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background">
       {/* Hero Section - Full viewport height */}
       <div className="min-h-screen flex flex-col bg-primary relative">
         <div

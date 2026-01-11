@@ -133,15 +133,7 @@ function MenuCarousel({ className }: { className?: string }) {
     slidesToScroll: 1,
   })
 
-  const {
-    selectedIndex,
-    scrollSnaps, // eslint-disable-line @typescript-eslint/no-unused-vars
-    prevDisabled, // eslint-disable-line @typescript-eslint/no-unused-vars
-    nextDisabled, // eslint-disable-line @typescript-eslint/no-unused-vars
-    onDotClick, // eslint-disable-line @typescript-eslint/no-unused-vars
-    onPrev,
-    onNext,
-  } = useCarouselControls(emblaApi)
+  const { selectedIndex, onPrev, onNext } = useCarouselControls(emblaApi)
 
   const currentCategory = menuCategories.find((c) => c.id === activeCategory)
   const baseItems = currentCategory?.items ?? []
@@ -162,14 +154,14 @@ function MenuCarousel({ className }: { className?: string }) {
   }, [activeCategory, emblaApi, baseItems.length])
 
   return (
-    <div className={cn('w-full', className)}>
+    <div className={cn('w-full bg-secondary', className)}>
       {/* Marquee */}
-      <div className="bg-secondary text-secondary-foreground">
+      <div className="bg-secondary text-secondary-foreground ">
         <Marquee items={marqueeItems} />
       </div>
 
       {/* Main carousel container */}
-      <div className="bg-accent py-10 sm:py-12 ">
+      <div className="bg-accent pt-10 pb-6 sm:pt-12 sm:pb-8 rounded-xl">
         {/* Tabs */}
         <div className="flex justify-center mb-8 sm:mb-12 px-4">
           <MenuTabs
@@ -199,16 +191,16 @@ function MenuCarousel({ className }: { className?: string }) {
         </div>
 
         {/* Carousel controller */}
-        <div className="flex justify-center mt-8 sm:mt-10 px-4">
-          <div className="inline-flex items-center bg-[#1a1a1a] rounded-2xl p-1 shadow-2xl">
+        <div className="flex justify-center mt-6 sm:mt-10 px-4">
+          <div className="inline-flex items-center bg-secondary rounded-lg p-1 shadow-2xl">
             {/* Prev Button */}
             <Button
               size="icon-sm"
               variant="ghost"
               onClick={onPrev}
-              className="bg-white hover:bg-white/90 text-black rounded-xl h-10 w-10 p-0 mr-3"
+              className="bg-white hover:bg-white/90 text-black rounded-sm h-8 w-8 p-0 mr-2"
             >
-              <ChevronLeft className="size-5" />
+              <ChevronLeft className="size-4" />
             </Button>
 
             {/* Dots */}
@@ -232,22 +224,22 @@ function MenuCarousel({ className }: { className?: string }) {
               size="icon-sm"
               variant="ghost"
               onClick={onNext}
-              className="bg-white hover:bg-white/90 text-black rounded-xl h-10 w-10 p-0 ml-3"
+              className="bg-white hover:bg-white/90 text-black rounded-sm h-8 w-8 p-0 ml-2"
             >
-              <ChevronRight className="size-5" />
+              <ChevronRight className="size-4" />
             </Button>
 
             {/* Spacer */}
-            <div className="w-8" />
+            <div className="w-6" />
 
             {/* View All Button */}
             <Button
               variant="ghost"
               size="sm"
-              className="bg-white hover:bg-white/90 text-black rounded-xl h-10 px-4 gap-1 text-sm font-bold"
+              className="bg-white hover:bg-white/90 text-black rounded-sm h-8 px-3 gap-1 text-xs font-bold"
             >
               View All
-              <ChevronRight className="size-4" />
+              <ChevronRight className="size-3" />
             </Button>
           </div>
         </div>

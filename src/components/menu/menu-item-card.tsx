@@ -18,7 +18,7 @@ function MenuItemCard({
   return (
     <motion.div
       className={cn(
-        'relative flex flex-col items-center p-4 rounded-xl bg-card transition-colors w-full',
+        'relative flex flex-col items-center p-4 rounded-xl bg-transparent transition-colors w-full',
         className,
       )}
       initial={false}
