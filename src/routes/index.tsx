@@ -1,5 +1,6 @@
 import { AboutSection } from '@/components/about'
 import { Header } from '@/components/layout/header'
+import { MenuShowcase } from '@/components/menu'
 import { Button } from '@/components/ui/button'
 import { RatingBadge } from '@/components/ui/rating-badge'
 import { MenuSection } from '@/sections'
@@ -69,6 +70,9 @@ function App() {
 
       {/* Menu Section - Overlaps into hero */}
       <MenuSection />
+
+      {/* Menu Showcase Section */}
+      <MenuShowcase />
 
       {/* About Section */}
       <AboutSection />
