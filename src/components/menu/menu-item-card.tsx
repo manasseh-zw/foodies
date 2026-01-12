@@ -4,8 +4,8 @@ import { cn } from '@/lib/utils'
 import Splash from '@/components/assets'
 import type { MenuItem } from './menu-data'
 
-// Toned down color palette for splash backgrounds
-const SPLASH_COLORS = ['#f0ad98', '#9ae0b7', '#c4adc4', '#9797ef'] as const
+// Organic, earthy color palette for splash backgrounds
+const SPLASH_COLORS = ['#E8A08A', '#B1D353', '#C9B08E', '#A2B29F'] as const
 
 type MenuItemCardProps = {
   item: MenuItem

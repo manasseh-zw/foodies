@@ -119,46 +119,42 @@ export function NavbarWithMenu({
 }: NavbarWithMenuProps) {
   const [activeMenu, setActiveMenu] = React.useState<string | null>(null)
   const [isScrolled, setIsScrolled] = React.useState(false)
-  const [isLargeScreen, setIsLargeScreen] = React.useState(false)
 
   React.useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
 
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024)
-    }
-
     window.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', handleResize)
     handleScroll() // Check initial scroll position
-    handleResize() // Check initial screen size
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleResize)
     }
   }, [])
 
-  // Only shrink on large screens
-  const shouldShrink = isScrolled && isLargeScreen
-
+  // Always animate based on scroll, regardless of screen size
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 w-full pt-4 px-3 sm:px-8">
+    <div className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center pointer-events-none">
       <motion.header
         className={cn(
-          'relative bg-secondary text-secondary-foreground rounded-lg md:rounded-2xl mx-auto',
+          'relative bg-secondary text-secondary-foreground shadow-lg mx-auto pointer-events-auto',
           className,
         )}
         initial={false}
         animate={{
-          maxWidth: shouldShrink ? '90%' : '100%',
+          width: isScrolled ? '100%' : '96%',
+          marginTop: isScrolled ? 0 : 16,
+          borderTopLeftRadius: isScrolled ? 0 : 24,
+          borderTopRightRadius: isScrolled ? 0 : 24,
+          borderBottomLeftRadius: isScrolled ? 0 : 24,
+          borderBottomRightRadius: isScrolled ? 0 : 24,
         }}
         transition={{
           type: 'spring',
-          stiffness: 150,
-          damping: 25,
+          stiffness: 120,
+          damping: 20,
+          mass: 1,
         }}
       >
         <div className="container mx-auto px-4 py-3">
@@ -169,7 +165,7 @@ export function NavbarWithMenu({
                 <button
                   key={section.id}
                   onMouseEnter={() => setActiveMenu(section.id)}
-                  className="text-base font-medium hover:text-primary transition-colors capitalize py-2"
+                  className="text-base font-display font-medium hover:text-primary transition-colors capitalize py-2"
                 >
                   {section.id}
                 </button>
