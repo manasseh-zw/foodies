@@ -19,12 +19,12 @@ export default function Marquee({
     <div
       className={`relative flex w-full overflow-x-hidden font-display ${speedClass} ${className ?? ''}`}
     >
-      <div className="animate-marquee whitespace-nowrap py-3">
+      <div className="animate-marquee whitespace-nowrap py-1.5 sm:py-3">
         {items.map((item, index) => {
           const isDot = item === '•'
           const sizeClass = isDot
-            ? 'text-2xl sm:text-3xl'
-            : 'text-base sm:text-lg md:text-xl'
+            ? 'text-xl sm:text-2xl md:text-3xl'
+            : 'text-sm sm:text-base md:text-lg lg:text-xl'
 
           return (
             <span
@@ -37,12 +37,12 @@ export default function Marquee({
         })}
       </div>
 
-      <div className="absolute top-0 animate-marquee2 whitespace-nowrap py-3">
+      <div className="absolute top-0 animate-marquee2 whitespace-nowrap py-1.5 sm:py-3">
         {items.map((item, index) => {
           const isDot = item === '•'
           const sizeClass = isDot
-            ? 'text-2xl sm:text-3xl'
-            : 'text-base sm:text-lg md:text-xl'
+            ? 'text-xl sm:text-2xl md:text-3xl'
+            : 'text-sm sm:text-base md:text-lg lg:text-xl'
 
           return (
             <span

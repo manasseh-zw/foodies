@@ -159,9 +159,9 @@ function MenuCarousel({ className }: { className?: string }) {
       </div>
 
       {/* Main carousel container */}
-      <div className="bg-accent pt-10 pb-6 sm:pt-12 sm:pb-8 rounded-xl">
+      <div className="bg-[#F6EFE3] pt-8 pb-6 sm:pt-12 sm:pb-8 rounded-xl">
         {/* Tabs */}
-        <div className="flex justify-center mb-8 sm:mb-12 px-4">
+        <div className="flex justify-center mb-6 sm:mb-12 px-2 sm:px-4">
           <MenuTabs
             categories={menuCategories}
             activeCategory={activeCategory}
@@ -189,14 +189,14 @@ function MenuCarousel({ className }: { className?: string }) {
         </div>
 
         {/* Carousel controller */}
-        <div className="flex justify-center mt-6 sm:mt-10 px-4">
+        <div className="flex justify-center mt-6 sm:mt-10 px-2 sm:px-4">
           <div className="inline-flex items-center bg-secondary rounded-lg p-1 shadow-2xl">
             {/* Prev Button */}
             <Button
               size="icon-sm"
               variant="ghost"
               onClick={onPrev}
-              className="bg-white hover:bg-white/90 text-black rounded-sm h-8 w-8 p-0 mr-2"
+              className="bg-background hover:bg-background/90 text-black rounded-sm h-8 w-8 p-0 mr-2"
             >
               <ChevronLeft className="size-4" />
             </Button>
@@ -222,7 +222,7 @@ function MenuCarousel({ className }: { className?: string }) {
               size="icon-sm"
               variant="ghost"
               onClick={onNext}
-              className="bg-white hover:bg-white/90 text-black rounded-sm h-8 w-8 p-0 ml-2"
+              className="bg-background hover:bg-background/90 text-black rounded-sm h-8 w-8 p-0 ml-2"
             >
               <ChevronRight className="size-4" />
             </Button>
