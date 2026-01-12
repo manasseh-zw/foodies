@@ -118,14 +118,48 @@ export function NavbarWithMenu({
   className,
 }: NavbarWithMenuProps) {
   const [activeMenu, setActiveMenu] = React.useState<string | null>(null)
+  const [isScrolled, setIsScrolled] = React.useState(false)
+  const [isLargeScreen, setIsLargeScreen] = React.useState(false)
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleResize)
+    handleScroll() // Check initial scroll position
+    handleResize() // Check initial screen size
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  // Only shrink on large screens
+  const shouldShrink = isScrolled && isLargeScreen
 
   return (
-    <div className="sticky top-0 z-50 w-full pt-4 px-3 sm:px-5 ">
-      <header
+    <div className="sticky top-0 z-50 w-full pt-4 px-3 sm:px-5">
+      <motion.header
         className={cn(
-          'relative bg-secondary text-secondary-foreground rounded-lg md:rounded-2xl',
+          'relative bg-secondary text-secondary-foreground rounded-lg md:rounded-2xl mx-auto',
           className,
         )}
+        initial={false}
+        animate={{
+          maxWidth: shouldShrink ? '90%' : '100%',
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 150,
+          damping: 25,
+        }}
       >
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between relative">
@@ -179,7 +213,7 @@ export function NavbarWithMenu({
           sections={sections}
           onClose={() => setActiveMenu(null)}
         />
-      </header>
+      </motion.header>
     </div>
   )
 }

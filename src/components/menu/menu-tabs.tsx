@@ -28,13 +28,21 @@ function MenuTabs({
             key={category.id}
             onClick={() => onCategoryChange(category.id)}
             className={cn(
-              'relative flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-sm font-display text-sm sm:text-base transition-all duration-200',
+              'relative flex items-center gap-2 px-3 py-2.5 sm:px-5 sm:py-3 rounded-sm font-display text-sm sm:text-base transition-colors duration-300 ease-in-out',
               isActive
                 ? 'bg-secondary text-secondary-foreground'
                 : 'text-accent-foreground/80 hover:text-accent-foreground hover:outline-2 hover:outline-secondary',
             )}
           >
-            <span className="text-base">{category.emoji}</span>
+            {category.icon && (
+              <category.icon
+                className={cn(
+                  'size-5 transition-colors duration-300 ease-in-out',
+                  isActive ? 'text-secondary-foreground' : 'text-secondary',
+                )}
+              />
+            )}
+
             <span className="hidden sm:inline">{category.label}</span>
           </button>
         )

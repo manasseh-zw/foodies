@@ -1,3 +1,5 @@
+import { DrumstickIcon, FriesIcon, PizzaIcon, BurgerIcon } from '@/components/icons'
+
 export type MenuItem = {
   id: string
   name: string
@@ -9,7 +11,7 @@ export type MenuItem = {
 export type MenuCategory = {
   id: string
   label: string
-  emoji: string
+  icon?: React.ComponentType<{ className?: string }>
   items: MenuItem[]
 }
 
@@ -17,7 +19,7 @@ export const menuCategories: MenuCategory[] = [
   {
     id: 'burgers',
     label: 'Burgers & Wraps',
-    emoji: '🍔',
+    icon: BurgerIcon,
     items: [
       {
         id: 'beef-burger',
@@ -57,7 +59,7 @@ export const menuCategories: MenuCategory[] = [
   {
     id: 'chicken',
     label: 'Chicken & Sides',
-    emoji: '🍗',
+    icon: DrumstickIcon,
     items: [
       {
         id: 'quarter-chicken',
@@ -98,7 +100,7 @@ export const menuCategories: MenuCategory[] = [
   {
     id: 'pizza',
     label: 'Pizza',
-    emoji: '🍕',
+    icon: PizzaIcon,
     items: [
       {
         id: 'bbq-steak-pizza',
@@ -139,7 +141,7 @@ export const menuCategories: MenuCategory[] = [
   {
     id: 'combos',
     label: 'Meal Combos',
-    emoji: '🍟',
+    icon: FriesIcon,
     items: [
       {
         id: 'beef-meal',

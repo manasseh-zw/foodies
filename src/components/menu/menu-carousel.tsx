@@ -170,7 +170,7 @@ function MenuCarousel({ className }: { className?: string }) {
         </div>
 
         {/* Carousel content */}
-        <div className="relative [--slide-gap:1.5rem] sm:[--slide-gap:2rem]">
+        <div className="relative [--slide-gap:1.5rem] sm:[--slide-gap:2rem] lg:[--slide-gap:5rem]">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex touch-pan-y touch-pinch-zoom ml-[calc(var(--slide-gap)*-1)]">
               {items.map((item, index) => {
@@ -178,9 +178,9 @@ function MenuCarousel({ className }: { className?: string }) {
                 return (
                   <div
                     key={item.uniqueId}
-                    className="flex-none pl-(--slide-gap) w-[85vw] sm:w-[340px] md:w-[380px] lg:w-[340px]"
+                    className="flex-none pl-(--slide-gap) w-[85vw] sm:w-[340px] md:w-[380px] lg:w-[calc(33.333%-2rem)]"
                   >
-                    <MenuItemCard item={item} isActive={isActive} />
+                    <MenuItemCard item={item} isActive={isActive} colorIndex={index} />
                   </div>
                 )
               })}
@@ -189,7 +189,7 @@ function MenuCarousel({ className }: { className?: string }) {
         </div>
 
         {/* Carousel controller */}
-        <div className="flex justify-center mt-6 sm:mt-10 px-2 sm:px-4">
+        <div className="flex justify-center mt-6 sm:mt-12 px-2 sm:px-4">
           <div className="inline-flex items-center bg-secondary rounded-lg p-1 shadow-2xl">
             {/* Prev Button */}
             <Button

@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils"
 import { Logo } from "@/components/logo"
 import { NavbarWithMenu, NavbarMenuSection } from "@/components/ui/navbar-menu"
 import { HugeiconsIcon } from "@hugeicons/react"
