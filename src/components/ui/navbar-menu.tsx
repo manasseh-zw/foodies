@@ -145,7 +145,7 @@ export function NavbarWithMenu({
   const shouldShrink = isScrolled && isLargeScreen
 
   return (
-    <div className="sticky top-0 z-50 w-full pt-4 px-3 sm:px-5">
+    <div className="fixed top-0 left-0 right-0 z-50 w-full pt-4 px-3 sm:px-5">
       <motion.header
         className={cn(
           'relative bg-secondary text-secondary-foreground rounded-lg md:rounded-2xl mx-auto',

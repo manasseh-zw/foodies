@@ -85,10 +85,15 @@ function MenuItemCard({
         />
       </div>
 
-      {/* Item name */}
-      <h3 className="relative z-10 font-display text-base sm:text-lg md:text-xl font-bold text-center text-card-foreground uppercase tracking-wide leading-tight">
-        {item.name}
-      </h3>
+      {/* Item name and price */}
+      <div className="relative z-10 flex items-center justify-center gap-2 px-2 flex-wrap">
+        <h3 className="font-display text-base sm:text-lg md:text-xl font-bold text-center text-card-foreground uppercase tracking-wide leading-tight">
+          {item.name}
+        </h3>
+        <span className="font-display text-sm sm:text-base md:text-lg font-black bg-primary text-primary-foreground px-2 py-0.5 rounded-lg shadow-sm">
+          {item.price}
+        </span>
+      </div>
 
     </motion.div>
   )

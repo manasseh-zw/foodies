@@ -1,3 +1,4 @@
+import { AboutSection } from '@/components/about'
 import { Header } from '@/components/layout/header'
 import { Button } from '@/components/ui/button'
 import { RatingBadge } from '@/components/ui/rating-badge'
@@ -9,8 +10,11 @@ export const Route = createFileRoute('/')({ component: App })
 function App() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      {/* Sticky Header - Fixed at top across all sections */}
+      <Header />
+
       {/* Hero Section - Full viewport height */}
-      <div className=" flex flex-col bg-primary relative">
+      <div className="flex flex-col bg-primary relative">
         <div
           className="absolute inset-0 opacity-[0.07] pointer-events-none"
           style={{
@@ -20,9 +24,9 @@ function App() {
             backgroundPosition: 'center',
           }}
         />
-        <Header />
         <div className="relative z-10 flex flex-col flex-1">
-          <section className="flex-1 flex items-center pt-20 pb-24 sm:pb-28 md:pb-32">
+          <section className="flex-1 flex items-center pt-30 md:pt-36 pb-24 sm:pb-28 md:pb-32">
+
             <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-24">
               <div className="flex flex-col md:flex-row items-center gap-8 md:gap-0">
                 {/* Left side - Text content */}
@@ -65,6 +69,9 @@ function App() {
 
       {/* Menu Section - Overlaps into hero */}
       <MenuSection />
+
+      {/* About Section */}
+      <AboutSection />
     </div>
   )
 }
