@@ -31,7 +31,7 @@ function MenuTabs({
               'relative flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-sm font-display text-sm sm:text-base transition-all duration-200',
               isActive
                 ? 'bg-secondary text-secondary-foreground'
-                : 'text-accent-foreground/80 hover:text-accent-foreground',
+                : 'text-accent-foreground/80 hover:text-accent-foreground hover:outline-2 hover:outline-secondary',
             )}
           >
             <span className="text-base">{category.emoji}</span>

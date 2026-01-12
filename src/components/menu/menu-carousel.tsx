@@ -152,9 +152,9 @@ function MenuCarousel({ className }: { className?: string }) {
   }, [activeCategory, emblaApi, baseItems.length])
 
   return (
-    <div className={cn('w-full bg-secondary', className)}>
+    <div className={cn('w-full bg-[#c3a3d6]', className)}>
       {/* Marquee */}
-      <div className="bg-secondary text-secondary-foreground ">
+      <div className="bg-[#c3a3d6] text-secondary ">
         <Marquee items={marqueeItems} />
       </div>
 
@@ -225,19 +225,6 @@ function MenuCarousel({ className }: { className?: string }) {
               className="bg-white hover:bg-white/90 text-black rounded-sm h-8 w-8 p-0 ml-2"
             >
               <ChevronRight className="size-4" />
-            </Button>
-
-            {/* Spacer */}
-            <div className="w-6 hidden sm:block" />
-
-            {/* View All Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="hidden sm:flex bg-white hover:bg-white/90 text-black rounded-sm h-8 px-3 gap-1 text-xs font-bold"
-            >
-              View All
-              <ChevronRight className="size-3" />
             </Button>
           </div>
         </div>
