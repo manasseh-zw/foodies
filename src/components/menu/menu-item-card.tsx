@@ -67,7 +67,7 @@ function MenuItemCard({
       </motion.div>
 
       {/* Food image */}
-      <div className="relative z-10 w-full aspect-square flex items-center justify-center mb-2">
+      <div className="relative z-10 w-[90%] aspect-square flex items-center justify-center mb-1">
         <motion.img
           src={item.image}
           alt={item.name}
@@ -87,10 +87,10 @@ function MenuItemCard({
 
       {/* Item name and price */}
       <div className="relative z-10 flex items-center justify-center gap-2 px-2 flex-wrap">
-        <h3 className="font-display text-base sm:text-lg md:text-xl font-bold text-center text-card-foreground uppercase tracking-wide leading-tight">
+        <h3 className="font-display text-sm sm:text-base md:text-lg font-bold text-center text-card-foreground uppercase tracking-wide leading-tight">
           {item.name}
         </h3>
-        <span className="font-display text-sm sm:text-base md:text-lg font-black bg-primary text-primary-foreground px-2 py-0.5 rounded-lg shadow-sm">
+        <span className="font-display text-xs sm:text-sm md:text-base font-black bg-primary text-primary-foreground px-2 py-0.5 rounded-lg shadow-sm">
           {item.price}
         </span>
       </div>

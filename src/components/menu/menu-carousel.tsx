@@ -161,13 +161,13 @@ function MenuCarousel({ className }: { className?: string }) {
     <div className={cn('w-full bg-[#c3a3d6]', className)}>
       {/* Marquee */}
       <div className="bg-[#c3a3d6] text-secondary ">
-        <Marquee items={marqueeItems} />
+        <Marquee speed='slow' items={marqueeItems} />
       </div>
 
       {/* Main carousel container */}
-      <div className="bg-[#F6EFE3] pt-8 pb-6 sm:pt-12 sm:pb-8 rounded-xl">
+      <div className="bg-[#F6EFE3] pt-6 pb-6 sm:pt-8 sm:pb-6 rounded-xl">
         {/* Tabs */}
-        <div className="flex justify-center mb-6 sm:mb-12 px-2 sm:px-4">
+        <div className="flex justify-center mb-4 sm:mb-8 px-2 sm:px-4">
           <MenuTabs
             categories={menuCategories}
             activeCategory={activeCategory}
@@ -176,7 +176,7 @@ function MenuCarousel({ className }: { className?: string }) {
         </div>
 
         {/* Carousel content */}
-        <div className="relative [--slide-gap:1.5rem] sm:[--slide-gap:2rem] lg:[--slide-gap:5rem]">
+        <div className="relative [--slide-gap:1.5rem] sm:[--slide-gap:2.5rem] lg:[--slide-gap:5rem]">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex touch-pan-y touch-pinch-zoom ml-[calc(var(--slide-gap)*-1)]">
               {items.map((item, index) => {
@@ -184,7 +184,7 @@ function MenuCarousel({ className }: { className?: string }) {
                 return (
                   <div
                     key={item.uniqueId}
-                    className="flex-none pl-(--slide-gap) w-[85vw] sm:w-[340px] md:w-[380px] lg:w-[calc(33.333%-2rem)]"
+                    className="flex-none pl-(--slide-gap) w-[90vw] sm:w-[280px] md:w-[320px] lg:w-[calc(30%-1.5rem)]"
                   >
                     <MenuItemCard item={item} isActive={isActive} colorIndex={index} />
                   </div>
@@ -195,7 +195,7 @@ function MenuCarousel({ className }: { className?: string }) {
         </div>
 
         {/* Carousel controller */}
-        <div className="flex justify-center mt-6 sm:mt-12 px-2 sm:px-4">
+        <div className="flex justify-center mt-6 sm:mt-6 px-2 sm:px-4 sm:mb-3">
           <div className="inline-flex items-center bg-secondary rounded-lg p-1 shadow-2xl">
             {/* Prev Button */}
             <Button

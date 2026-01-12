@@ -145,7 +145,7 @@ export function NavbarWithMenu({
   const shouldShrink = isScrolled && isLargeScreen
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 w-full pt-4 px-3 sm:px-5">
+    <div className="fixed top-0 left-0 right-0 z-50 w-full pt-4 px-3 sm:px-8">
       <motion.header
         className={cn(
           'relative bg-secondary text-secondary-foreground rounded-lg md:rounded-2xl mx-auto',
@@ -161,7 +161,7 @@ export function NavbarWithMenu({
           damping: 25,
         }}
       >
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between relative">
             {/* Left navigation links */}
             <nav className="hidden md:flex items-center gap-6 flex-1">

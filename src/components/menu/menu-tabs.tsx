@@ -28,7 +28,7 @@ function MenuTabs({
             key={category.id}
             onClick={() => onCategoryChange(category.id)}
             className={cn(
-              'relative flex items-center gap-2 px-3 py-2.5 sm:px-5 sm:py-3 rounded-sm font-display text-sm sm:text-base transition-colors duration-300 ease-in-out',
+              'relative flex items-center gap-2 px-3 py-2.5 sm:px-5 sm:py-2.5 rounded-sm font-display text-sm sm:text-base transition-colors duration-300 ease-in-out',
               isActive
                 ? 'bg-secondary text-secondary-foreground'
                 : 'text-accent-foreground/80 hover:text-accent-foreground hover:outline-2 hover:outline-secondary',
