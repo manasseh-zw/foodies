@@ -145,3 +145,32 @@ export const BurgerIcon = (props: IconProps) => (
     </g>
   </svg>
 );
+
+export const ZimbabweFlagIcon = (props: IconProps) => (
+  <svg
+    viewBox="0 0 992.13 496.07"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <rect style={{ fill: "#319208" }} height="70.866" width="992.13" y="425.2" x="0" />
+    <rect style={{ fill: "#de2010" }} height="70.866" width="992.13" y="283.46" x="0" />
+    <rect style={{ fill: "#ffd200" }} height="70.866" width="992.13" y="354.33" x="0" />
+    <rect style={{ fill: "#de2010" }} height="70.866" width="992.13" y="141.73" x="0" />
+    <rect style={{ fill: "#ffd200" }} height="70.866" width="992.13" y="70.866" x="0" />
+    <rect style={{ fill: "#319208" }} height="70.866" width="992.13" y=".00029718" x="0" />
+    <rect style={{ fill: "#000000" }} height="70.866" width="992.13" y="212.6" x="0" />
+    <path style={{ fill: "#ffffff" }} d="m0 0.0001297v496.06l333.07-248.03-333.07-248.03z" />
+    <g transform="translate(-494.23 -14.644)">
+      <polygon
+        style={{ fill: "#d62419" }}
+        transform="matrix(1.0221 .073279 -.073279 1.0221 3.3492 -41.431)"
+        points="613.94 119.54 645.77 202.92 737.69 197.14 668.22 253.18 702.13 338.8 627.37 290.05 556.41 348.76 579.67 262.59 501.9 213.25 591.05 208.74"
+      />
+      <path
+        style={{ fill: "#f7df00", stroke: "#000000", strokeWidth: "1pt" }}
+        d="m542.73 175.7c1.6-2.89 1.92-4.5 10.28-8.04 10.92-31.81 38.88-19.28 54.3 24.75 14.14 6.1 98.65 69.08 97.37 72.62-0.65 3.21-11.25 0.64-11.25 0.64s-16.71 71.33-17.03 71.33c-31.17-4.17-79.69-4.82-112.79-4.17 0.32-5.47-8.99-41.13-8.99-41.13s-8.04-2.57 5.46-29.89c14.46-34.38 17.35-90.29-17.35-86.11z"
+      />
+    </g>
+  </svg>
+);

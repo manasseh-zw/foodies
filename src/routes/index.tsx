@@ -5,6 +5,7 @@ import { TestimonialsSection } from '@/components/testimonials'
 import { Button } from '@/components/ui/button'
 import { RatingBadge } from '@/components/ui/rating-badge'
 import { MenuSection } from '@/sections'
+import { CurveDivider } from '@/components/ui/curve-divider'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({ component: App })
@@ -73,11 +74,9 @@ function App() {
 
       {/* Menu Showcase Section */}
       <MenuShowcase />
-
-      {/* About Section */}
+     
       <AboutSection />
-
-      {/* Testimonials Section */}
+ 
       <TestimonialsSection />
     </div>
   )
