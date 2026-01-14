@@ -14,15 +14,15 @@ export function MenuHeader() {
           backgroundPosition: 'center',
         }}
       />
-      {/* Floating Home Button - Fixed position to be visible throughout scroll */}
-      <div className="fixed top-6 left-6 z-50">
+      {/* Floating Home Button - Edge tab */}
+      <div className="fixed right-0 top-24 z-50 group">
         <Link to="/">
-          <Button 
+          <Button
             variant="secondary"
-            className="rounded-full shadow-lg h-auto py-3 px-6 text-base font-bold gap-2 animate-in fade-in zoom-in duration-300"
+            className="rounded-l-full shadow-lg h-auto py-4 pl-3 pr-5 text-base font-bold gap-2 animate-in fade-in zoom-in duration-300 transition-transform translate-x-[calc(100%-3rem)] group-hover:translate-x-0"
           >
-            Home
             <HomeIcon className="w-5 h-5" />
+            Home
           </Button>
         </Link>
       </div>

@@ -293,3 +293,20 @@
     scroll-behavior: smooth;
   }
 }
+.menu-scroll {
+  scrollbar-color: var(--color-primary) transparent;
+  scrollbar-width: auto;
+}
+
+.menu-scroll::-webkit-scrollbar {
+  width: 12px;
+}
+
+.menu-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.menu-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 999px;
+}
