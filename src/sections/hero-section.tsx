@@ -20,7 +20,7 @@ export function HeroSection() {
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-0">
               {/* Left side - Text content */}
               <div className="flex-1 text-center md:text-left relative z-20 md:-mr-24 lg:mr-1">
-                <h1 className="font-serif text-5xl sm:text-5xl lg:text-8xl font-semibold text-primary-foreground leading-none mb-6">
+                <h1 className="font-display text-5xl sm:text-5xl lg:text-8xl font-black text-primary-foreground leading-none mb-6">
                   Good Bites,
                   <br />
                   Good Vibes
