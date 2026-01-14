@@ -75,7 +75,9 @@ function App() {
       {/* Menu Showcase Section */}
       <MenuShowcase />
      
+     <CurveDivider flip={true} color="fill-primary" height={80} className="mt-auto" />
       <AboutSection />
+      <CurveDivider color="fill-primary" height={80} className="mt-auto" />
  
       <TestimonialsSection />
     </div>
