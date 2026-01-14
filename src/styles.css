@@ -281,18 +281,15 @@
     letter-spacing: var(--tracking-normal);
     font-size: 1rem;
     line-height: 1.75rem;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
   }
   html {
     @apply font-sans;
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
   }
 }
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-

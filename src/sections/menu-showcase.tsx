@@ -22,7 +22,7 @@ const showcaseImages = [
   },
 ] as const
 
-function MenuShowcase() {
+export function MenuShowcase() {
   return (
     <section className="relative overflow-hidden bg-background py-16 sm:py-24 lg:py-36">
       {/* Food doodle background pattern */}
@@ -114,5 +114,3 @@ function MenuShowcase() {
     </section>
   )
 }
-
-export { MenuShowcase }

@@ -1,1 +1,5 @@
-export { MenuSection } from './menu-section'
+export * from './menu-section'
+export * from './about-section'
+export * from './testimonials-section'
+export * from './menu-showcase'
+export * from './hero-section'

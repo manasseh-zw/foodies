@@ -1,8 +1,7 @@
 'use client';
 
-import { StarRating } from './star-rating';
-import { TestimonialCard } from './testimonial-card';
-import { ZimbabweFlagIcon } from '../icons';
+import { StarRating, TestimonialCard } from '@/components/testimonials';
+import { ZimbabweFlagIcon } from '@/components/icons';
 
 const testimonials = [
   {
