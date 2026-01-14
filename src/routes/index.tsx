@@ -27,7 +27,6 @@ function App() {
         />
         <div className="relative z-10 flex flex-col flex-1">
           <section className="flex-1 flex items-center pt-30 md:pt-36 pb-24 sm:pb-28 md:pb-32">
-
             <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-24">
               <div className="flex flex-col md:flex-row items-center gap-8 md:gap-0">
                 {/* Left side - Text content */}

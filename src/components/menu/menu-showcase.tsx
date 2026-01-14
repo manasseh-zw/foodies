@@ -46,7 +46,7 @@ function MenuShowcase() {
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:flex lg:px-8">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:max-w-none lg:min-w-full lg:flex-none lg:gap-y-8">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-10 lg:mx-0 lg:max-w-none lg:min-w-full lg:flex-none lg:gap-y-4">
           {/* Text Content */}
           <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
             <h2 className="font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
@@ -69,7 +69,7 @@ function MenuShowcase() {
           </div>
 
           {/* Image Grid */}
-          <div className="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
+          <div className="flex flex-wrap items-start justify-end gap-4 sm:gap-5 lg:contents">
             {/* Top Right Image */}
             <div className="w-0 flex-auto lg:ml-auto lg:w-auto lg:flex-none lg:self-end">
               <img
@@ -80,7 +80,7 @@ function MenuShowcase() {
             </div>
 
             {/* Bottom Row Images */}
-            <div className="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8">
+            <div className="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-4 lg:translate-x-16">
               {/* First - Order first on mobile */}
               <div className="order-first flex w-64 flex-none justify-end self-end lg:w-auto">
                 <img

@@ -160,7 +160,7 @@ function MenuCarousel({ className }: { className?: string }) {
   return (
     <div className={cn('w-full bg-[#c3a3d6]', className)}>
       {/* Marquee */}
-      <div className="bg-[#c3a3d6] text-secondary ">
+      <div className="bg-[#c3a3d6] text-secondary overflow-hidden">
         <Marquee speed='slow' items={marqueeItems} />
       </div>
 
