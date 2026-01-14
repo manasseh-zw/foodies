@@ -1,5 +1,6 @@
 'use client'
 
+import * as React from 'react'
 import { Search01Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { cn } from '@/lib/utils'
@@ -91,20 +92,20 @@ function MenuSearchSidebar({
             <button
               type="button"
               onClick={onClearFilters}
-              className="flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-colors hover:border-primary/60"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-colors hover:border-primary/60"
               aria-label="Clear filters"
             >
-              <CloseIcon className="size-5" />
+              <CloseIcon className="size-4.5" />
             </button>
           ) : (
             <FamilyDrawerRoot views={views}>
               <FamilyDrawerTrigger asChild>
                 <button
                   type="button"
-                  className="flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-colors hover:border-primary/60"
+                  className="flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-colors hover:border-primary/60"
                   aria-label="Open filters"
                 >
-                  <FilterIcon className="size-5" />
+                  <FilterIcon className="size-4.5" />
                 </button>
               </FamilyDrawerTrigger>
               <FamilyDrawerPortal>
@@ -174,6 +175,44 @@ function MobileFiltersView({
   onCategoryToggle,
   onSortChange,
 }: MobileFiltersViewProps) {
+  const [localSelectedCategories, setLocalSelectedCategories] =
+    React.useState<string[]>(selectedCategories)
+  const [localSortOption, setLocalSortOption] =
+    React.useState<SortOption>(sortOption)
+
+  React.useEffect(() => {
+    setLocalSelectedCategories(selectedCategories)
+  }, [selectedCategories])
+
+  React.useEffect(() => {
+    setLocalSortOption(sortOption)
+  }, [sortOption])
+
+  const handleLocalCategoryToggle = (categoryId: string) => {
+    setLocalSelectedCategories((prev) =>
+      prev.includes(categoryId)
+        ? prev.filter((id) => id !== categoryId)
+        : [...prev, categoryId],
+    )
+  }
+
+  const handleApplyFilters = () => {
+    localSelectedCategories.forEach((categoryId) => {
+      if (!selectedCategories.includes(categoryId)) {
+        onCategoryToggle(categoryId)
+      }
+    })
+    selectedCategories.forEach((categoryId) => {
+      if (!localSelectedCategories.includes(categoryId)) {
+        onCategoryToggle(categoryId)
+      }
+    })
+
+    if (localSortOption !== sortOption) {
+      onSortChange(localSortOption)
+    }
+  }
+
   return (
     <div className="relative flex h-full flex-col">
       {/* Sort Options */}
@@ -183,10 +222,10 @@ function MobileFiltersView({
         </h3>
         <div className="flex gap-2">
           <button
-            onClick={() => onSortChange('a-z')}
+            onClick={() => setLocalSortOption('a-z')}
             className={cn(
               'flex-1 px-4 py-2.5 rounded-xl font-display text-sm transition-all duration-200',
-              sortOption === 'a-z'
+              localSortOption === 'a-z'
                 ? 'bg-secondary text-secondary-foreground shadow-md'
                 : 'bg-card text-foreground border border-border hover:border-primary/50 hover:shadow-sm',
             )}
@@ -194,16 +233,21 @@ function MobileFiltersView({
             A - Z
           </button>
           <button
-            onClick={() => onSortChange('default')}
-            className="flex-1 px-4 py-2.5 rounded-xl font-display text-sm bg-card text-foreground border border-border hover:border-primary/50 hover:shadow-sm transition-all duration-200"
+            onClick={() => setLocalSortOption('default')}
+            className={cn(
+              'flex-1 px-4 py-2.5 rounded-xl font-display text-sm transition-all duration-200',
+              localSortOption === 'default'
+                ? 'bg-secondary text-secondary-foreground shadow-md'
+                : 'bg-card text-foreground border border-border hover:border-primary/50 hover:shadow-sm',
+            )}
           >
             Default
           </button>
           <button
-            onClick={() => onSortChange('popular')}
+            onClick={() => setLocalSortOption('popular')}
             className={cn(
               'flex-1 px-4 py-2.5 rounded-xl font-display text-sm transition-all duration-200',
-              sortOption === 'popular'
+              localSortOption === 'popular'
                 ? 'bg-secondary text-secondary-foreground shadow-md'
                 : 'bg-card text-foreground border border-border hover:border-primary/50 hover:shadow-sm',
             )}
@@ -226,7 +270,7 @@ function MobileFiltersView({
               onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()
-                onCategoryToggle(category.id)
+                handleLocalCategoryToggle(category.id)
               }}
               onMouseDown={(e) => {
                 e.preventDefault()
@@ -235,10 +279,10 @@ function MobileFiltersView({
             >
               <input
                 type="checkbox"
-                checked={selectedCategories.includes(category.id)}
+                checked={localSelectedCategories.includes(category.id)}
                 onChange={(e) => {
                   e.stopPropagation()
-                  onCategoryToggle(category.id)
+                  handleLocalCategoryToggle(category.id)
                 }}
                 onClick={(e) => {
                   e.stopPropagation()
@@ -261,6 +305,7 @@ function MobileFiltersView({
         <Drawer.Close asChild>
           <button
             type="button"
+            onClick={handleApplyFilters}
             className="flex h-10 w-full items-center justify-center rounded-xl bg-secondary text-secondary-foreground px-4 py-2.5 font-display text-sm transition-transform focus:scale-95 focus-visible:shadow-focus-ring-button active:scale-95"
           >
             Apply Filters
