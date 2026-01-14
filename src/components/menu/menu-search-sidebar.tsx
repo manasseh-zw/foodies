@@ -9,7 +9,6 @@ import type { SortOption } from './menu-search-grid'
 import {
   FamilyDrawerAnimatedContent,
   FamilyDrawerAnimatedWrapper,
-  FamilyDrawerClose,
   FamilyDrawerContent,
   FamilyDrawerOverlay,
   FamilyDrawerPortal,
@@ -19,12 +18,6 @@ import {
   type ViewsRegistry,
 } from '@/components/ui/family-drawer'
 import { Drawer } from 'vaul'
-
-const sortOptions: { id: SortOption; label: string }[] = [
-  { id: 'default', label: 'Default' },
-  { id: 'a-z', label: 'A - Z' },
-  { id: 'popular', label: 'Most Popular' },
-]
 
 type MobileFiltersViewProps = {
   categories: MenuCategory[]
@@ -183,27 +176,40 @@ function MobileFiltersView({
 }: MobileFiltersViewProps) {
   return (
     <div className="relative flex h-full flex-col">
-
       {/* Sort Options */}
       <div className="mb-6 shrink-0">
         <h3 className="font-display font-bold text-foreground text-base mb-3">
           Sort By
         </h3>
-        <div className="flex flex-col gap-2">
-          {sortOptions.map((option) => (
-            <button
-              key={option.id}
-              onClick={() => onSortChange(option.id)}
-              className={cn(
-                'w-full px-4 py-3 rounded-xl font-display text-sm text-left transition-all duration-200',
-                sortOption === option.id
-                  ? 'bg-secondary text-secondary-foreground shadow-md'
-                  : 'bg-card text-foreground border border-border hover:border-primary/50 hover:shadow-sm',
-              )}
-            >
-              {option.label}
-            </button>
-          ))}
+        <div className="flex gap-2">
+          <button
+            onClick={() => onSortChange('a-z')}
+            className={cn(
+              'flex-1 px-4 py-2.5 rounded-xl font-display text-sm transition-all duration-200',
+              sortOption === 'a-z'
+                ? 'bg-secondary text-secondary-foreground shadow-md'
+                : 'bg-card text-foreground border border-border hover:border-primary/50 hover:shadow-sm',
+            )}
+          >
+            A - Z
+          </button>
+          <button
+            onClick={() => onSortChange('default')}
+            className="flex-1 px-4 py-2.5 rounded-xl font-display text-sm bg-card text-foreground border border-border hover:border-primary/50 hover:shadow-sm transition-all duration-200"
+          >
+            Default
+          </button>
+          <button
+            onClick={() => onSortChange('popular')}
+            className={cn(
+              'flex-1 px-4 py-2.5 rounded-xl font-display text-sm transition-all duration-200',
+              sortOption === 'popular'
+                ? 'bg-secondary text-secondary-foreground shadow-md'
+                : 'bg-card text-foreground border border-border hover:border-primary/50 hover:shadow-sm',
+            )}
+          >
+            Popular
+          </button>
         </div>
       </div>
 
@@ -216,15 +222,33 @@ function MobileFiltersView({
           {categories.map((category) => (
             <label
               key={category.id}
-              className="flex items-center gap-3 cursor-pointer group py-0.5"
+              className="flex items-center gap-3 cursor-pointer py-0.5"
+              onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                onCategoryToggle(category.id)
+              }}
+              onMouseDown={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+              }}
             >
               <input
                 type="checkbox"
                 checked={selectedCategories.includes(category.id)}
-                onChange={() => onCategoryToggle(category.id)}
-                className="size-4 rounded border-border text-primary focus:ring-primary/30 accent-primary"
+                onChange={(e) => {
+                  e.stopPropagation()
+                  onCategoryToggle(category.id)
+                }}
+                onClick={(e) => {
+                  e.stopPropagation()
+                }}
+                onMouseDown={(e) => {
+                  e.stopPropagation()
+                }}
+                className="size-4 rounded border-border text-primary focus:ring-primary/30 accent-primary pointer-events-none"
               />
-              <span className="text-foreground text-base group-hover:text-primary transition-colors">
+              <span className="text-foreground text-base">
                 {category.label}
               </span>
             </label>
@@ -237,7 +261,7 @@ function MobileFiltersView({
         <Drawer.Close asChild>
           <button
             type="button"
-            className="flex h-12 w-full items-center justify-center rounded-full bg-secondary text-secondary-foreground text-[19px] font-semibold transition-transform focus:scale-95 focus-visible:shadow-focus-ring-button active:scale-95"
+            className="flex h-10 w-full items-center justify-center rounded-xl bg-secondary text-secondary-foreground px-4 py-2.5 font-display text-sm transition-transform focus:scale-95 focus-visible:shadow-focus-ring-button active:scale-95"
           >
             Apply Filters
           </button>
