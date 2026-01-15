@@ -1,4 +1,4 @@
-
+import { Link } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
 import { RatingBadge } from '@/components/ui/rating-badge'
 
@@ -30,9 +30,11 @@ export function HeroSection() {
                   experiences delivered right to your door.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-                  <Button variant="secondary" size="lg" className="text-lg">
-                    Order Now
-                  </Button>
+                  <Link to="/menu">
+                    <Button variant="secondary" size="lg" className="text-lg">
+                      Order Now
+                    </Button>
+                  </Link>
                   <RatingBadge
                     title="Rated 4.9/5"
                     subtitle="2,500+ happy customers"

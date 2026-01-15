@@ -1,6 +1,8 @@
 import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/footer'
 import {
   AboutSection,
+  CtaSection,
   HeroSection,
   MenuSection,
   MenuShowcase,
@@ -48,9 +50,10 @@ function App() {
           'DRINKS',
         ]}
         speed="normal"
-        backgroundColor='#F6EFE3'
-  
+        backgroundColor="#F6EFE3"
       />
+      <CtaSection />
+      <Footer />
     </div>
   )
 }

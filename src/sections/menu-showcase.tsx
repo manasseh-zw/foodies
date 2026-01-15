@@ -1,24 +1,29 @@
+import { Link } from '@tanstack/react-router'
 
 const showcaseImages = [
   {
     src: '/assets/menu/menu-showcase1.jpg',
     alt: 'Delicious gourmet burger with fresh ingredients',
-    className: 'aspect-7/5 w-[37rem] max-w-none rounded-xl bg-muted object-cover',
+    className:
+      'aspect-7/5 w-[37rem] max-w-none rounded-xl bg-muted object-cover',
   },
   {
     src: '/assets/menu/menu-showcase4.jpg',
     alt: 'Freshly prepared crispy chicken wings',
-    className: 'aspect-4/3 w-[24rem] max-w-none flex-none rounded-xl bg-muted object-cover',
+    className:
+      'aspect-4/3 w-[24rem] max-w-none flex-none rounded-xl bg-muted object-cover',
   },
   {
     src: '/assets/menu/menu-showcase3.jpg',
     alt: 'Artisan pizza with premium toppings',
-    className: 'aspect-7/5 w-[37rem] max-w-none flex-none rounded-xl bg-muted object-cover',
+    className:
+      'aspect-7/5 w-[37rem] max-w-none flex-none rounded-xl bg-muted object-cover',
   },
   {
     src: '/assets/menu/menu-showcase2.jpg',
     alt: 'Loaded fries with special sauce',
-    className: 'aspect-4/3 w-[24rem] max-w-none rounded-xl bg-muted object-cover',
+    className:
+      'aspect-4/3 w-[24rem] max-w-none rounded-xl bg-muted object-cover',
   },
 ] as const
 
@@ -40,7 +45,8 @@ export function MenuShowcase() {
       <div
         className="absolute inset-x-0 top-0 h-32 sm:h-40 pointer-events-none"
         style={{
-          background: 'linear-gradient(to bottom, #FCFAF8 0%, transparent 100%)',
+          background:
+            'linear-gradient(to bottom, #FCFAF8 0%, transparent 100%)',
         }}
       />
 
@@ -53,18 +59,22 @@ export function MenuShowcase() {
               Our Menu
             </h2>
             <p className="mt-6 text-xl/8 text-foreground/80">
-              From flame-grilled burgers to crispy pizzas and savory chicken, every dish is crafted with passion and the freshest ingredients to satisfy your cravings.
+              From flame-grilled burgers to crispy pizzas and savory chicken,
+              every dish is crafted with passion and the freshest ingredients to
+              satisfy your cravings.
             </p>
             <p className="mt-6 text-base/7 text-foreground/70">
-              Whether you're in the mood for a quick bite or a full feast, our menu has something for everyone. Explore our selection and discover your new favorite meal.
+              Whether you're in the mood for a quick bite or a full feast, our
+              menu has something for everyone. Explore our selection and
+              discover your new favorite meal.
             </p>
             <div className="mt-10 flex">
-              <a
-                href="#menu"
+              <Link
+                to="/menu"
                 className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 font-display text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
               >
                 View Full Menu <span aria-hidden="true">&rarr;</span>
-              </a>
+              </Link>
             </div>
           </div>
 
