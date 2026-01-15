@@ -21,6 +21,7 @@ function App() {
       <Header />
 
       <HeroSection />
+      
 
       {/* Menu Section - Overlaps into hero */}
       <MenuSection />

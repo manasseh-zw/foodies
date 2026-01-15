@@ -19,11 +19,11 @@ export default function Marquee({
     <div
       className={`relative flex w-full overflow-hidden select-none pointer-events-none font-display ${speedClass} ${className ?? ''}`}
     >
-      <div className="animate-marquee whitespace-nowrap py-1.5 sm:py-2.5">
+      <div className="animate-marquee whitespace-nowrap py-2 sm:py-2.5">
         {items.map((item, index) => {
           const isDot = item === '•'
           const sizeClass = isDot
-            ? 'text-xl sm:text-2xl md:text-3xl'
+            ? 'text-xl sm:text-3xl md:text-3  xl'
             : 'text-sm sm:text-base md:text-lg lg:text-xl'
 
           return (
