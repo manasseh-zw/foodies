@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import { SVGProps } from 'react'
 
 export interface IconProps extends SVGProps<SVGSVGElement> {}
 
@@ -12,9 +12,9 @@ export const DrumstickIcon = (props: IconProps) => (
     xmlnsXlink="http://www.w3.org/1999/xlink"
     xmlSpace="preserve"
     style={{
-      fillRule: "evenodd",
-      clipRule: "evenodd",
-      strokeLinejoin: "round",
+      fillRule: 'evenodd',
+      clipRule: 'evenodd',
+      strokeLinejoin: 'round',
       strokeMiterlimit: 2,
     }}
     {...props}
@@ -29,7 +29,7 @@ export const DrumstickIcon = (props: IconProps) => (
       </g>
     </g>
   </svg>
-);
+)
 
 export const FriesIcon = (props: IconProps) => (
   <svg
@@ -41,9 +41,9 @@ export const FriesIcon = (props: IconProps) => (
     xmlnsXlink="http://www.w3.org/1999/xlink"
     xmlSpace="preserve"
     style={{
-      fillRule: "evenodd",
-      clipRule: "evenodd",
-      strokeLinejoin: "round",
+      fillRule: 'evenodd',
+      clipRule: 'evenodd',
+      strokeLinejoin: 'round',
       strokeMiterlimit: 2,
     }}
     {...props}
@@ -58,7 +58,7 @@ export const FriesIcon = (props: IconProps) => (
       </g>
     </g>
   </svg>
-);
+)
 
 export const PizzaIcon = (props: IconProps) => (
   <svg
@@ -70,9 +70,9 @@ export const PizzaIcon = (props: IconProps) => (
     xmlnsXlink="http://www.w3.org/1999/xlink"
     xmlSpace="preserve"
     style={{
-      fillRule: "evenodd",
-      clipRule: "evenodd",
-      strokeLinejoin: "round",
+      fillRule: 'evenodd',
+      clipRule: 'evenodd',
+      strokeLinejoin: 'round',
       strokeMiterlimit: 2,
     }}
     {...props}
@@ -115,7 +115,7 @@ export const PizzaIcon = (props: IconProps) => (
       </g>
     </g>
   </svg>
-);
+)
 
 export const BurgerIcon = (props: IconProps) => (
   <svg
@@ -127,9 +127,9 @@ export const BurgerIcon = (props: IconProps) => (
     xmlnsXlink="http://www.w3.org/1999/xlink"
     xmlSpace="preserve"
     style={{
-      fillRule: "evenodd",
-      clipRule: "evenodd",
-      strokeLinejoin: "round",
+      fillRule: 'evenodd',
+      clipRule: 'evenodd',
+      strokeLinejoin: 'round',
       strokeMiterlimit: 2,
     }}
     {...props}
@@ -144,7 +144,7 @@ export const BurgerIcon = (props: IconProps) => (
       </g>
     </g>
   </svg>
-);
+)
 
 export const ZimbabweFlagIcon = (props: IconProps) => (
   <svg
@@ -153,27 +153,72 @@ export const ZimbabweFlagIcon = (props: IconProps) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <rect style={{ fill: "#319208" }} height="70.866" width="992.13" y="425.2" x="0" />
-    <rect style={{ fill: "#de2010" }} height="70.866" width="992.13" y="283.46" x="0" />
-    <rect style={{ fill: "#ffd200" }} height="70.866" width="992.13" y="354.33" x="0" />
-    <rect style={{ fill: "#de2010" }} height="70.866" width="992.13" y="141.73" x="0" />
-    <rect style={{ fill: "#ffd200" }} height="70.866" width="992.13" y="70.866" x="0" />
-    <rect style={{ fill: "#319208" }} height="70.866" width="992.13" y=".00029718" x="0" />
-    <rect style={{ fill: "#000000" }} height="70.866" width="992.13" y="212.6" x="0" />
-    <path style={{ fill: "#ffffff" }} d="m0 0.0001297v496.06l333.07-248.03-333.07-248.03z" />
+    <rect
+      style={{ fill: '#319208' }}
+      height="70.866"
+      width="992.13"
+      y="425.2"
+      x="0"
+    />
+    <rect
+      style={{ fill: '#de2010' }}
+      height="70.866"
+      width="992.13"
+      y="283.46"
+      x="0"
+    />
+    <rect
+      style={{ fill: '#ffd200' }}
+      height="70.866"
+      width="992.13"
+      y="354.33"
+      x="0"
+    />
+    <rect
+      style={{ fill: '#de2010' }}
+      height="70.866"
+      width="992.13"
+      y="141.73"
+      x="0"
+    />
+    <rect
+      style={{ fill: '#ffd200' }}
+      height="70.866"
+      width="992.13"
+      y="70.866"
+      x="0"
+    />
+    <rect
+      style={{ fill: '#319208' }}
+      height="70.866"
+      width="992.13"
+      y=".00029718"
+      x="0"
+    />
+    <rect
+      style={{ fill: '#000000' }}
+      height="70.866"
+      width="992.13"
+      y="212.6"
+      x="0"
+    />
+    <path
+      style={{ fill: '#ffffff' }}
+      d="m0 0.0001297v496.06l333.07-248.03-333.07-248.03z"
+    />
     <g transform="translate(-494.23 -14.644)">
       <polygon
-        style={{ fill: "#d62419" }}
+        style={{ fill: '#d62419' }}
         transform="matrix(1.0221 .073279 -.073279 1.0221 3.3492 -41.431)"
         points="613.94 119.54 645.77 202.92 737.69 197.14 668.22 253.18 702.13 338.8 627.37 290.05 556.41 348.76 579.67 262.59 501.9 213.25 591.05 208.74"
       />
       <path
-        style={{ fill: "#f7df00", stroke: "#000000", strokeWidth: "1pt" }}
+        style={{ fill: '#f7df00', stroke: '#000000', strokeWidth: '1pt' }}
         d="m542.73 175.7c1.6-2.89 1.92-4.5 10.28-8.04 10.92-31.81 38.88-19.28 54.3 24.75 14.14 6.1 98.65 69.08 97.37 72.62-0.65 3.21-11.25 0.64-11.25 0.64s-16.71 71.33-17.03 71.33c-31.17-4.17-79.69-4.82-112.79-4.17 0.32-5.47-8.99-41.13-8.99-41.13s-8.04-2.57 5.46-29.89c14.46-34.38 17.35-90.29-17.35-86.11z"
       />
     </g>
   </svg>
-);
+)
 
 export const HomeIcon = (props: IconProps) => (
   <svg
@@ -192,4 +237,29 @@ export const HomeIcon = (props: IconProps) => (
       strokeLinejoin="round"
     />
   </svg>
-);
+)
+
+export interface StarSeparatorProps extends IconProps {
+  color?: string
+}
+
+export const StarSeparator = ({
+  color = '#3BB3E3',
+  ...props
+}: StarSeparatorProps) => (
+  <svg
+    width="29"
+    height="31"
+    viewBox="0 0 29 31"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ strokeWidth: 0.5 }}
+    {...props}
+  >
+    <path
+      d="M27.0426 7.97501C26.5364 7.07217 25.5272 6.758 24.1998 7.03806C24.1791 6.9373 24.143 6.83734 24.0901 6.74372C23.9007 6.40575 23.5502 6.22566 23.1975 6.2447C22.9827 5.10703 22.538 3.90589 21.8662 2.64286C21.7995 2.51751 21.6706 2.44056 21.5318 2.44452C20.1177 2.47943 18.8738 2.69284 17.8041 3.08318C17.7841 3.02367 17.7588 2.96496 17.7274 2.90864C17.5035 2.50878 17.0541 2.32949 16.6423 2.44056C16.2013 1.1934 15.449 0.497626 14.472 0.500006C13.4781 0.501593 12.7182 1.22672 12.2857 2.51831C12.0525 2.46198 11.8002 2.49292 11.5771 2.6262C11.3876 2.73965 11.2496 2.91022 11.1706 3.10459C10.0955 2.71268 8.84471 2.50085 7.42063 2.4715C7.28182 2.46912 7.15376 2.54687 7.08704 2.67142C6.40069 3.97015 5.9559 5.20382 5.75192 6.36846C5.54409 6.33832 5.32554 6.3764 5.12998 6.49381C4.91219 6.62472 4.76265 6.8302 4.6921 7.06027C3.40146 6.81275 2.42216 7.13644 1.92983 8.0242C1.44594 8.89452 1.65069 9.90922 2.46511 10.9184C2.10391 11.2254 1.99885 11.7665 2.24118 12.1981C2.27646 12.2607 2.3171 12.3178 2.36235 12.3694C1.53336 13.1263 0.76342 14.114 0.0540644 15.3286C-0.0180215 15.4516 -0.0180215 15.6047 0.0540644 15.7277C0.770322 16.9431 1.5464 17.9293 2.38152 18.6837C2.13766 18.9979 2.09087 19.4477 2.29793 19.8174C2.35698 19.9222 2.43213 20.0118 2.51725 20.0848C1.67676 21.1114 1.46281 22.1436 1.95667 23.0242C2.46051 23.9231 3.46051 24.2388 4.77646 23.9675C4.79716 24.0714 4.83321 24.173 4.88689 24.2698C5.08014 24.6149 5.4421 24.7958 5.8033 24.7672C6.01956 25.9009 6.46281 27.0989 7.13305 28.3571C7.19977 28.4825 7.3286 28.5594 7.46741 28.5555C8.87231 28.5214 10.107 28.3111 11.1714 27.9256C11.1913 27.9866 11.2174 28.0469 11.2504 28.1049C11.4789 28.5126 11.9413 28.6904 12.3593 28.5658C12.801 29.8082 13.5518 30.5016 14.5265 30.5C15.5157 30.4984 16.2734 29.7804 16.7074 28.4991C16.936 28.5507 17.1829 28.5182 17.4007 28.3873C17.5962 28.2699 17.7366 28.0922 17.8148 27.8906C18.893 28.2857 20.1484 28.4991 21.5786 28.5285C21.7166 28.5317 21.8455 28.4547 21.9122 28.3286C22.5947 27.0354 23.0387 25.8081 23.2442 24.6474C23.4467 24.6728 23.6576 24.6339 23.8478 24.5197C24.0709 24.3856 24.2228 24.1738 24.291 23.9366C25.5901 24.1896 26.5748 23.8667 27.0702 22.9758C27.5548 22.1047 27.3493 21.0892 26.5326 20.0793C26.8784 19.7698 26.9751 19.2399 26.7366 18.8154C26.7021 18.7543 26.6622 18.698 26.6185 18.6472C27.4551 17.888 28.2312 16.8955 28.9459 15.6714C29.018 15.5484 29.018 15.3945 28.9459 15.2723C28.2281 14.0545 27.4498 13.066 26.6131 12.3107C26.8439 11.9973 26.8846 11.5586 26.6814 11.196C26.6238 11.0937 26.551 11.0064 26.4689 10.9342C27.3225 9.90049 27.5418 8.86198 27.0449 7.97501H27.0426Z"
+      fill={color}
+      fillOpacity={0.9}
+    />
+  </svg>
+)

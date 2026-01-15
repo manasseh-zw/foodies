@@ -7,6 +7,7 @@ import {
   TestimonialsSection,
 } from '@/sections'
 import { CurveDivider } from '@/components/ui/curve-divider'
+import MarqueeDivider from '@/components/ui/marquee-divider'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({ component: App })
@@ -33,8 +34,23 @@ function App() {
       />
       <AboutSection />
       <CurveDivider color="fill-primary" height={80} className="mt-auto" />
-
       <TestimonialsSection />
+
+      <MarqueeDivider
+        items={[
+          'BURGERS',
+          'PIZZA',
+          'CHICKEN',
+          'WRAPS',
+          'SIDES',
+          'COMBOS',
+          'DESSERTS',
+          'DRINKS',
+        ]}
+        speed="normal"
+        backgroundColor='#F6EFE3'
+  
+      />
     </div>
   )
 }

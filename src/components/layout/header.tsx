@@ -44,30 +44,6 @@ const sections: NavbarMenuSection[] = [
     ],
   },
   {
-    id: "shop",
-    gridLayout: "grid grid-cols-3 gap-4",
-    links: [
-      {
-        label: "Gift Cards",
-        href: "/gift-cards",
-        description: "Perfect for food lovers",
-        icon: <HugeiconsIcon icon={GiftCardIcon} size={20} />,
-      },
-      {
-        label: "Merchandise",
-        href: "/merchandise",
-        description: "Shop our branded items",
-        icon: <HugeiconsIcon icon={ShoppingBagIcon} size={20} />,
-      },
-      {
-        label: "Special Offers",
-        href: "/offers",
-        description: "Current deals and promotions",
-        icon: <HugeiconsIcon icon={SaleTag01Icon} size={20} />,
-      },
-    ],
-  },
-  {
     id: "menu",
     gridLayout: "grid grid-cols-2 grid-rows-2 gap-4",
     links: [
@@ -89,12 +65,6 @@ const sections: NavbarMenuSection[] = [
         href: "/menu/drinks",
         description: "Beverages and cocktails",
         icon: <HugeiconsIcon icon={DrinkIcon} size={20} />,
-      },
-      {
-        label: "Desserts",
-        href: "/menu/desserts",
-        description: "Sweet endings",
-        icon: <HugeiconsIcon icon={IceCreamIcon} size={20} />,
       },
     ],
   },
