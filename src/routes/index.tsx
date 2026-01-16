@@ -10,6 +10,7 @@ import {
 } from '@/sections'
 import { CurveDivider } from '@/components/ui/curve-divider'
 import MarqueeDivider from '@/components/ui/marquee-divider'
+import { ChatWidget } from '@/components/chat/chat-widget'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({ component: App })
@@ -55,6 +56,7 @@ function App() {
       />
       <CtaSection />
       <Footer />
+      <ChatWidget />
     </div>
   )
 }
