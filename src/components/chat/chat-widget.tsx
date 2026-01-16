@@ -111,7 +111,7 @@ export function ChatWidget() {
               exit={{ y: 16, opacity: 0 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
             >
-              <Card className="bg-card/95 flex h-full flex-col overflow-hidden rounded-[34px] shadow-2xl backdrop-blur">
+              <Card className="bg-card/95 flex h-full flex-col overflow-hidden rounded-[34px] shadow-2xl backdrop-blur gap-0 py-0">
                 <CardHeader className="border-border flex flex-row items-center gap-3 border-b px-3 py-2">
                   <div className="flex size-10 items-center justify-center rounded-full bg-transparent">
                     <Avatar
