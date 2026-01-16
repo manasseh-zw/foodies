@@ -53,7 +53,7 @@ export function NavbarMenu({ activeMenu, sections, onClose }: NavbarMenuProps) {
               >
                 {activeSection.links.map((link) => (
                   <a
-                    key={link.href}
+                    key={`${activeSection.id}-${link.label}`}
                     href={link.href}
                     target={link.external ? '_blank' : undefined}
                     rel={link.external ? 'noopener noreferrer' : undefined}
