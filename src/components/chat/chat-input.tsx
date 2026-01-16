@@ -15,52 +15,74 @@ import { useState } from 'react'
 type PromptInputBasicProps = {
   className?: string
   placeholder?: string
+  value?: string
+  isLoading?: boolean
+  onValueChange?: (value: string) => void
+  onSubmit?: () => void
+  disabled?: boolean
 }
 
 export function PromptInputBasic({
   className,
   placeholder = 'Ask me anything...',
+  value,
+  isLoading,
+  onValueChange,
+  onSubmit,
+  disabled = false,
 }: PromptInputBasicProps) {
-  const [input, setInput] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const [internalValue, setInternalValue] = useState('')
+  const [internalLoading, setInternalLoading] = useState(false)
+
+  const inputValue = value ?? internalValue
+  const loadingValue = isLoading ?? internalLoading
 
   const handleSubmit = () => {
-    setIsLoading(true)
-    // simulate request
+    if (disabled || loadingValue) return
+    if (onSubmit) {
+      onSubmit()
+      return
+    }
+    setInternalLoading(true)
     setTimeout(() => {
-      setIsLoading(false)
-      setInput('')
+      setInternalLoading(false)
+      setInternalValue('')
     }, 2000)
   }
 
-  const handleValueChange = (value: string) => {
-    setInput(value)
+  const handleValueChange = (nextValue: string) => {
+    onValueChange?.(nextValue)
+    if (!onValueChange) {
+      setInternalValue(nextValue)
+    }
   }
 
   return (
     <PromptInput
-      value={input}
+      value={inputValue}
       onValueChange={handleValueChange}
-      isLoading={isLoading}
+      isLoading={loadingValue}
       onSubmit={handleSubmit}
+      disabled={disabled}
       className={cn('w-full max-w-(--breakpoint-md)', className)}
     >
       <PromptInputTextarea
         placeholder={placeholder}
         disableAutosize
-        className="max-h-28 overflow-y-auto"
+        className="max-h-24 min-h-[36px] overflow-y-auto"
       />
       <PromptInputActions className="justify-end pt-2">
         <PromptInputAction
-          tooltip={isLoading ? 'Stop generation' : 'Send message'}
+          tooltip={loadingValue ? 'Stop generation' : 'Send message'}
         >
           <Button
             variant="default"
             size="icon"
             className="h-8 w-8 rounded-full"
             onClick={handleSubmit}
+            disabled={disabled}
           >
-            {isLoading ? (
+            {loadingValue ? (
               <HugeiconsIcon
                 icon={Loading03Icon}
                 size={18}
