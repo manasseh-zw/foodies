@@ -164,7 +164,7 @@ const ConversationDemo = ({ className }: ConversationDemoProps) => {
 
   return (
     <div className={cn('flex h-full flex-col', className)}>
-      <Conversation>
+      <Conversation className="menu-scroll">
         <ConversationContent>
           {messages.length === 0 && streamingMessageIndex === null ? (
             <ConversationEmptyState className="gap-4">

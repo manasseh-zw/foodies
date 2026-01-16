@@ -45,7 +45,11 @@ export function PromptInputBasic({
       onSubmit={handleSubmit}
       className={cn('w-full max-w-(--breakpoint-md)', className)}
     >
-      <PromptInputTextarea placeholder={placeholder} />
+      <PromptInputTextarea
+        placeholder={placeholder}
+        disableAutosize
+        className="max-h-28 overflow-y-auto"
+      />
       <PromptInputActions className="justify-end pt-2">
         <PromptInputAction
           tooltip={isLoading ? 'Stop generation' : 'Send message'}

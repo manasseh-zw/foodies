@@ -16,6 +16,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import NeumorphButton from '@/components/ui/neumorph-button'
 
 const assistantColors = ['#cdeccc', '#ffc52a', '#ffc629', '#f23460', '#231f20']
 
@@ -74,16 +75,15 @@ export function ChatWidget() {
           </CardFooter>
         </Card>
       )}
-      <Button
+      <NeumorphButton
         aria-expanded={isOpen}
         aria-label={isOpen ? 'Chat open' : 'Open chat'}
-        className="bg-secondary text-secondary-foreground hover:bg-secondary/90 h-12 w-12 rounded-3xl shadow-lg"
+        className="h-12 w-12 rounded-full p-0 bg-secondary"
+        intent="default"
         onClick={() => setIsOpen((prev) => !prev)}
-        size="icon"
-        variant="secondary"
       >
-        <HugeiconsIcon icon={Comment01Icon} size={22} />
-      </Button>
+        <HugeiconsIcon icon={Comment01Icon} size={26} />
+      </NeumorphButton>
     </div>
   )
 }
