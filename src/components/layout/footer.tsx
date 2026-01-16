@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { ZimbabweFlagIcon } from '@/components/icons'
 
 const navLinks = [
   { label: 'Menu', to: '/menu' },
@@ -13,6 +14,7 @@ const socialLinks = [
   {
     label: 'Facebook',
     href: 'https://www.facebook.com',
+    className: 'text-[#1877F2]',
     icon: (
       <svg className="size-5" viewBox="0 0 24 24" aria-hidden="true">
         <path
@@ -25,6 +27,7 @@ const socialLinks = [
   {
     label: 'Instagram',
     href: 'https://www.instagram.com',
+    className: 'text-[#E1306C]',
     icon: (
       <svg className="size-5" viewBox="0 0 24 24" aria-hidden="true">
         <path
@@ -37,6 +40,7 @@ const socialLinks = [
   {
     label: 'X',
     href: 'https://x.com',
+    className: 'text-black',
     icon: (
       <svg className="size-5" viewBox="0 0 24 24" aria-hidden="true">
         <path
@@ -47,20 +51,9 @@ const socialLinks = [
     ),
   },
   {
-    label: 'GitHub',
-    href: 'https://github.com',
-    icon: (
-      <svg className="size-5" viewBox="0 0 24 24" aria-hidden="true">
-        <path
-          fill="currentColor"
-          d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.61-3.37-1.34-3.37-1.34c-.45-1.14-1.1-1.44-1.1-1.44c-.9-.62.07-.6.07-.6c1 .07 1.52 1.03 1.52 1.03c.89 1.52 2.34 1.08 2.9.83c.09-.65.35-1.08.64-1.33c-2.22-.25-4.56-1.11-4.56-4.95c0-1.09.39-1.98 1.03-2.68c-.1-.25-.45-1.27.1-2.65c0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.9-1.29 2.74-1.02 2.74-1.02c.55 1.38.2 2.4.1 2.65c.64.7 1.02 1.59 1.02 2.68c0 3.85-2.34 4.7-4.57 4.95c.36.31.68.92.68 1.86v2.76c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"
-        />
-      </svg>
-    ),
-  },
-  {
     label: 'YouTube',
     href: 'https://www.youtube.com',
+    className: 'text-[#FF0000]',
     icon: (
       <svg className="size-5" viewBox="0 0 24 24" aria-hidden="true">
         <path
@@ -77,7 +70,7 @@ export function Footer() {
     <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-16 sm:py-20 lg:px-8">
         <nav
-          className="-mb-2 flex flex-wrap justify-center gap-x-10 gap-y-3 text-sm font-medium text-foreground/70"
+          className="-mb-2 flex flex-wrap justify-center gap-x-10 gap-y-3 text-base font-medium text-foreground/70"
           aria-label="Footer"
         >
           {navLinks.map((link) => (
@@ -97,16 +90,20 @@ export function Footer() {
               href={link.href}
               target="_blank"
               rel="noreferrer"
-              className="text-foreground/60 transition-colors hover:text-foreground"
+              className={`transition-colors hover:text-foreground ${link.className}`}
             >
               <span className="sr-only">{link.label}</span>
               {link.icon}
             </a>
           ))}
         </div>
-        <p className="mt-10 text-center text-xs text-foreground/60">
-          &copy; 2024 Foodies. All rights reserved.
-        </p>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3 text-xs text-foreground/60">
+          <p>&copy; {new Date().getFullYear()} Foodies. All rights reserved.</p>
+          <div className="flex items-center gap-2">
+            <ZimbabweFlagIcon className="h-4 w-6" />
+            <span>Proudly Zimbabwe</span>
+          </div>
+        </div>
       </div>
     </footer>
   )
