@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import Avatar from 'boring-avatars'
 
 import {
@@ -32,6 +33,26 @@ const defaultAssistantColors = [
   '#f23460',
   '#231f20',
 ]
+
+function ThinkingIndicator({ className }: { className?: string }) {
+  const [dotCount, setDotCount] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDotCount((prev) => (prev + 1) % 4)
+    }, 500)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  const dots = '.'.repeat(dotCount)
+
+  return (
+    <span className={cn('text-xs', className)}>
+      thinking{dots}
+    </span>
+  )
+}
 
 export const ChatConversation = ({
   className,
@@ -97,7 +118,7 @@ export const ChatConversation = ({
                     className={showThinking ? 'text-white' : undefined}
                   >
                     {showThinking && !message.content ? (
-                      <span className="text-xs">thinking</span>
+                      <ThinkingIndicator />
                     ) : (
                       <Response>{message.content || '\u200B'}</Response>
                     )}

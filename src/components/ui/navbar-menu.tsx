@@ -15,12 +15,16 @@ export interface NavbarMenuLink {
   description?: string
   backgroundImage?: string
   rowSpan?: number
+  mapEmbed?: string
 }
 
 export interface NavbarMenuSection {
   id: string
   links: NavbarMenuLink[]
   gridLayout?: string
+  mapEmbed?: string
+  mapLink?: string
+  directLink?: string
 }
 
 interface NavbarMenuProps {
@@ -31,34 +35,82 @@ interface NavbarMenuProps {
 
 export function NavbarMenu({ activeMenu, sections, onClose }: NavbarMenuProps) {
   const activeSection = sections.find((section) => section.id === activeMenu)
+  const [hoveredMapLink, setHoveredMapLink] = React.useState<string | null>(
+    null,
+  )
 
-  return (
-    <AnimatePresence>
-      {activeMenu && activeSection && (
+  if (!activeMenu || !activeSection) {
+    return null
+  }
+
+  if (
+    activeSection.directLink ||
+    (activeSection.links.length === 0 && !activeSection.mapEmbed)
+  ) {
+    return null
+  }
+
+  if (activeSection.mapEmbed) {
+    return (
+      <AnimatePresence>
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="absolute left-0 right-0 top-full mt-2 px-6"
+          className="absolute left-0 right-0 top-full mt-2 px-6 flex justify-center"
           onMouseLeave={onClose}
         >
-          <div className="container mx-auto">
-            <div className="bg-background border border-border rounded-xl p-6 max-w-4xl">
-              <div
-                className={cn(
-                  'gap-4',
-                  activeSection.gridLayout || 'grid grid-cols-2',
-                )}
-              >
-                {activeSection.links.map((link) => (
+          <div className="bg-background border-2 border-primary rounded-lg overflow-hidden shadow-2xl">
+            <iframe
+              src={activeSection.mapEmbed}
+              width="500"
+              height="375"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Location Map"
+            />
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    )
+  }
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.2, ease: 'easeOut' }}
+        className="absolute left-0 right-0 top-full mt-2 px-6"
+        onMouseLeave={onClose}
+      >
+        <div className="container mx-auto">
+          <div className="bg-background border border-border rounded-xl p-6 max-w-4xl">
+            <div
+              className={cn(
+                'gap-4',
+                activeSection.gridLayout || 'grid grid-cols-2',
+              )}
+            >
+              {activeSection.links.map((link) => (
+                <div
+                  key={`${activeSection.id}-${link.label}`}
+                  className="relative"
+                  onMouseEnter={() =>
+                    link.mapEmbed && setHoveredMapLink(link.label)
+                  }
+                  onMouseLeave={() => link.mapEmbed && setHoveredMapLink(null)}
+                >
                   <a
-                    key={`${activeSection.id}-${link.label}`}
                     href={link.href}
                     target={link.external ? '_blank' : undefined}
                     rel={link.external ? 'noopener noreferrer' : undefined}
                     className={cn(
-                      'group relative overflow-hidden rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent hover:border-accent-foreground/20',
+                      'group relative overflow-hidden rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent hover:border-accent-foreground/20 block',
                       link.rowSpan === 2 && 'row-span-2',
                     )}
                     style={
@@ -97,12 +149,34 @@ export function NavbarMenu({ activeMenu, sections, onClose }: NavbarMenuProps) {
                       )}
                     </div>
                   </a>
-                ))}
-              </div>
+                  {link.mapEmbed && hoveredMapLink === link.label && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute left-full top-0 ml-4 z-50 pointer-events-none"
+                    >
+                      <div className="bg-background border-2 border-primary rounded-lg overflow-hidden shadow-2xl">
+                        <iframe
+                          src={link.mapEmbed}
+                          width="400"
+                          height="300"
+                          style={{ border: 0 }}
+                          allowFullScreen
+                          loading="lazy"
+                          referrerPolicy="no-referrer-when-downgrade"
+                          title={link.label}
+                        />
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
-        </motion.div>
-      )}
+        </div>
+      </motion.div>
     </AnimatePresence>
   )
 }
@@ -159,7 +233,12 @@ export function NavbarWithMenu({
             .split('-')
             .map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
             .join(' '),
-          href: section.links[0]?.href || '#',
+          href:
+            section.directLink ||
+            section.mapLink ||
+            section.links[0]?.href ||
+            '#',
+          external: !!section.mapLink,
         }))
         .filter((link) => link.href !== '#'),
     [sections],
@@ -194,15 +273,28 @@ export function NavbarWithMenu({
             <div className="flex items-center justify-between relative">
               {/* Left navigation links */}
               <nav className="hidden md:flex items-center gap-6 flex-1">
-                {sections.map((section) => (
-                  <button
-                    key={section.id}
-                    onMouseEnter={() => setActiveMenu(section.id)}
-                    className="text-base font-display font-medium hover:text-primary transition-colors capitalize py-2"
-                  >
-                    {section.id}
-                  </button>
-                ))}
+                {sections.map((section) =>
+                  section.mapLink || section.directLink ? (
+                    <a
+                      key={section.id}
+                      href={section.mapLink || section.directLink}
+                      target={section.mapLink ? '_blank' : undefined}
+                      rel={section.mapLink ? 'noopener noreferrer' : undefined}
+                      onMouseEnter={() => setActiveMenu(section.id)}
+                      className="text-base font-display font-medium hover:text-primary transition-colors capitalize py-2"
+                    >
+                      {section.id}
+                    </a>
+                  ) : (
+                    <button
+                      key={section.id}
+                      onMouseEnter={() => setActiveMenu(section.id)}
+                      className="text-base font-display font-medium hover:text-primary transition-colors capitalize py-2"
+                    >
+                      {section.id}
+                    </button>
+                  ),
+                )}
               </nav>
 
               {/* Centered Logo */}
@@ -288,6 +380,8 @@ export function NavbarWithMenu({
                     <a
                       key={link.href}
                       href={link.href}
+                      target={link.external ? '_blank' : undefined}
+                      rel={link.external ? 'noopener noreferrer' : undefined}
                       className="flex items-center gap-3 tracking-tight"
                       onClick={() => setIsMobileOpen(false)}
                     >
