@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import Avatar from 'boring-avatars'
+import { useEffect, useState } from 'react'
 
 import {
   Conversation,
@@ -47,11 +47,7 @@ function ThinkingIndicator({ className }: { className?: string }) {
 
   const dots = '.'.repeat(dotCount)
 
-  return (
-    <span className={cn('text-xs', className)}>
-      thinking{dots}
-    </span>
-  )
+  return <span className={cn('text-xs', className)}>typing{dots}</span>
 }
 
 export const ChatConversation = ({
