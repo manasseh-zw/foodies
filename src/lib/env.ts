@@ -8,5 +8,4 @@ const getEnv = (key: string) => {
 
 export const env = {
   openAiApiKey: getEnv('OPENAI_API_KEY'),
-  openAiAssistantId: getEnv('OPENAI_ASSISTANT_ID'),
 }
