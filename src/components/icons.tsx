@@ -243,6 +243,75 @@ export interface StarSeparatorProps extends IconProps {
   color?: string
 }
 
+export const CoffeeIcon = (props: IconProps) => (
+  <svg
+    width="100%"
+    height="100%"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M17 8h1a4 4 0 0 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8ZM6 1v3M10 1v3M14 1v3"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
+export const CocktailIcon = (props: IconProps) => (
+  <svg
+    width="100%"
+    height="100%"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M8 22h8M12 11v11M3 3l9 8 9-8M5 3l7 6 7-6"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <circle
+      cx="12"
+      cy="8"
+      r="2"
+      fill="currentColor"
+    />
+  </svg>
+)
+
+export const IceCreamIcon = (props: IconProps) => (
+  <svg
+    width="100%"
+    height="100%"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M12 22L8 12h8l-4 10ZM8 12C8 12 7 10 7 8a5 5 0 0 1 10 0c0 2-1 4-1 4H8Z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M9.5 8a2.5 2.5 0 0 1 5 0"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+)
+
 export const StarSeparator = ({
   color = '#3BB3E3',
   ...props

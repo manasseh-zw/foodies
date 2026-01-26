@@ -4,15 +4,10 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { MenuSearchSidebar } from './menu-search-sidebar'
 import { MenuSearchGrid, type SortOption } from './menu-search-grid'
-import { menuCategories, type MenuItem } from './menu-data'
+import { menuCategories, getAllMenuItems, type MenuItem } from '@/lib/data'
 
 type MenuSearchProps = {
   className?: string
-}
-
-// Flatten all menu items from all categories
-function getAllItems(): MenuItem[] {
-  return menuCategories.flatMap((category) => category.items)
 }
 
 function MenuSearch({ className }: MenuSearchProps) {
@@ -22,7 +17,7 @@ function MenuSearch({ className }: MenuSearchProps) {
   )
   const [sortOption, setSortOption] = React.useState<SortOption>('default')
 
-  const allItems = React.useMemo(() => getAllItems(), [])
+  const allItems = React.useMemo(() => getAllMenuItems(), [])
 
   // Filter items based on search query and selected categories
   const filteredItems = React.useMemo(() => {
@@ -35,11 +30,7 @@ function MenuSearch({ className }: MenuSearchProps) {
       // Category filter
       const matchesCategory =
         selectedCategories.length === 0 ||
-        menuCategories.some(
-          (cat) =>
-            selectedCategories.includes(cat.id) &&
-            cat.items.some((catItem) => catItem.id === item.id),
-        )
+        selectedCategories.includes(item.categoryId)
 
       return matchesSearch && matchesCategory
     })

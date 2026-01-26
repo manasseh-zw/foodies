@@ -1,5 +1,27 @@
 import { cn } from '@/lib/utils'
-import type { MenuCategory } from './menu-data'
+import type { MenuCategory } from '@/lib/data'
+import {
+  DrumstickIcon,
+  FriesIcon,
+  PizzaIcon,
+  BurgerIcon,
+  CoffeeIcon,
+  CocktailIcon,
+  IceCreamIcon,
+} from '@/components/icons'
+
+/**
+ * Maps iconName from data to the actual icon component
+ */
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  drumstick: DrumstickIcon,
+  fries: FriesIcon,
+  pizza: PizzaIcon,
+  burger: BurgerIcon,
+  coffee: CoffeeIcon,
+  cocktail: CocktailIcon,
+  'ice-cream': IceCreamIcon,
+}
 
 type MenuTabsProps = {
   categories: MenuCategory[]
@@ -23,6 +45,10 @@ function MenuTabs({
     >
       {categories.map((category) => {
         const isActive = category.id === activeCategory
+        const IconComponent = category.iconName
+          ? iconMap[category.iconName]
+          : null
+
         return (
           <button
             key={category.id}
@@ -34,8 +60,8 @@ function MenuTabs({
                 : 'text-accent-foreground/80 hover:text-accent-foreground hover:outline-2 hover:outline-secondary',
             )}
           >
-            {category.icon && (
-              <category.icon
+            {IconComponent && (
+              <IconComponent
                 className={cn(
                   'size-5 transition-colors duration-300 ease-in-out',
                   isActive ? 'text-secondary-foreground' : 'text-secondary',

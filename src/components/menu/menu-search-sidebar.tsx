@@ -5,7 +5,7 @@ import { Search01Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/animate-ui/button'
-import type { MenuCategory } from './menu-data'
+import type { MenuCategory } from '@/lib/data'
 import type { SortOption } from './menu-search-grid'
 import {
   FamilyDrawerAnimatedContent,

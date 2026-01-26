@@ -5,5 +5,20 @@ export { MenuTabs } from './menu-tabs'
 export { MenuSearch } from './menu-search'
 export { MenuSearchSidebar } from './menu-search-sidebar'
 export { MenuSearchGrid } from './menu-search-grid'
-export { menuCategories, type MenuItem, type MenuCategory } from './menu-data'
 
+// Re-export types and data from centralized location
+export {
+  menuCategories,
+  getAllMenuItems,
+  getMenuItemsByCategory,
+  getCarouselCategories,
+  getDisplayPrice,
+  getVariantLabels,
+  formatPrice,
+  addOns,
+  type MenuItem,
+  type MenuCategory,
+  type Variant,
+  type SizeVariant,
+  type AddOn,
+} from '@/lib/data'

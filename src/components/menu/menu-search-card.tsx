@@ -4,7 +4,11 @@ import { motion } from 'motion/react'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import Splash from '@/components/assets'
-import type { MenuItem } from './menu-data'
+import {
+  type MenuItem,
+  getDisplayPrice,
+  getVariantLabels,
+} from '@/lib/data'
 
 // Organic, earthy color palette for splash backgrounds
 const SPLASH_COLORS = ['#E8A08A', '#B1D353', '#C9B08E', '#A2B29F'] as const
@@ -26,6 +30,7 @@ function MenuSearchCard({
 }: MenuSearchCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const splashColor = SPLASH_COLORS[colorIndex % SPLASH_COLORS.length]
+  const variantLabels = getVariantLabels(item)
 
   return (
     <motion.div
@@ -86,13 +91,18 @@ function MenuSearchCard({
         />
       </div>
 
-      {/* Item name and price - outside the splash area */}
+      {/* Item name, variants, and price - outside the splash area */}
       <div className="relative z-10 flex flex-col items-center gap-2 -mt-1 text-center">
         <h3 className="font-display text-sm sm:text-base md:text-lg font-bold text-card-foreground uppercase tracking-wide leading-tight">
           {item.name}
+          {variantLabels && (
+            <span className="text-muted-foreground font-medium text-[0.7em] ml-1.5">
+              ({variantLabels})
+            </span>
+          )}
         </h3>
         <span className="font-display text-xs sm:text-sm font-black bg-primary text-primary-foreground px-3 py-1 rounded-lg shadow-md">
-          {item.price}
+          {getDisplayPrice(item)}
         </span>
       </div>
     </motion.div>

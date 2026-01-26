@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils'
 import { FlipReveal, FlipRevealItem } from '@/components/gsap/flip-reveal'
 import { MenuSearchCard } from './menu-search-card'
-import type { MenuItem } from './menu-data'
+import type { MenuItem } from '@/lib/data'
 import { useMemo } from 'react'
 
 type SortOption = 'default' | 'a-z' | 'popular'

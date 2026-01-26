@@ -9,7 +9,7 @@ import { Button } from '@/components/animate-ui/button'
 import Marquee from '@/components/ui/marquee'
 import { MenuTabs } from './menu-tabs'
 import { MenuItemCard } from './menu-item-card'
-import { menuCategories } from './menu-data'
+import { getCarouselCategories } from '@/lib/data'
 
 const transition: Transition = {
   type: 'spring',
@@ -126,9 +126,12 @@ function DotButton({ selected = false, onClick }: DotButtonProps) {
   )
 }
 
+// Get only the categories we want to show in the carousel
+const carouselCategories = getCarouselCategories()
+
 function MenuCarousel({ className }: { className?: string }) {
   const [activeCategory, setActiveCategory] = React.useState(
-    menuCategories[0].id,
+    carouselCategories[0].id,
   )
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'center',
@@ -139,7 +142,9 @@ function MenuCarousel({ className }: { className?: string }) {
 
   const { selectedIndex, onPrev, onNext } = useCarouselControls(emblaApi)
 
-  const currentCategory = menuCategories.find((c) => c.id === activeCategory)
+  const currentCategory = carouselCategories.find(
+    (c) => c.id === activeCategory,
+  )
   const baseItems = currentCategory?.items ?? []
 
   // Duplicate items to ensure smooth infinite scrolling (3x)
@@ -161,7 +166,7 @@ function MenuCarousel({ className }: { className?: string }) {
     <div className={cn('w-full bg-[#c3a3d6]', className)}>
       {/* Marquee */}
       <div className="bg-[#c3a3d6] text-secondary overflow-hidden">
-        <Marquee speed='slow' items={marqueeItems} />
+        <Marquee speed="slow" items={marqueeItems} />
       </div>
 
       {/* Main carousel container */}
@@ -169,7 +174,7 @@ function MenuCarousel({ className }: { className?: string }) {
         {/* Tabs */}
         <div className="flex justify-center mb-4 sm:mb-8 px-2 sm:px-4">
           <MenuTabs
-            categories={menuCategories}
+            categories={carouselCategories}
             activeCategory={activeCategory}
             onCategoryChange={setActiveCategory}
           />
@@ -186,7 +191,11 @@ function MenuCarousel({ className }: { className?: string }) {
                     key={item.uniqueId}
                     className="flex-none pl-(--slide-gap) w-[90vw] sm:w-[280px] md:w-[320px] lg:w-[calc(30%-1.5rem)]"
                   >
-                    <MenuItemCard item={item} isActive={isActive} colorIndex={index} />
+                    <MenuItemCard
+                      item={item}
+                      isActive={isActive}
+                      colorIndex={index}
+                    />
                   </div>
                 )
               })}

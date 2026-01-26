@@ -1,12 +1,12 @@
-import { Link } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
 import { RatingBadge } from '@/components/ui/rating-badge'
+import { Link } from '@tanstack/react-router'
 
 export function HeroSection() {
   return (
     <div className="flex flex-col bg-primary relative overflow-hidden">
       <div
-        className="absolute inset-0 opacity-[0.07] pointer-events-none"
+        className="absolute inset-0 opacity-[0.08] pointer-events-none"
         style={{
           backgroundImage: 'url(/assets/doodle.svg)',
           backgroundSize: 'cover',
@@ -47,7 +47,7 @@ export function HeroSection() {
               {/* Right side - Burger image */}
               <div className="hidden md:flex flex-1 md:flex-[1.2] justify-center md:justify-end md:pr-0 relative">
                 <img
-                  src="/assets/burger&fries&callout.png"
+                  src="/assets/burger&fries&callout.webp"
                   alt="Delicious burger"
                   className="w-full md:min-w-[120%] max-w-none md:-mr-[20%] object-contain"
                 />
