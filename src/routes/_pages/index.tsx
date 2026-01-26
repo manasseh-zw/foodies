@@ -1,5 +1,3 @@
-import { Header } from '@/components/layout/header'
-import { Footer } from '@/components/layout/footer'
 import {
   AboutSection,
   CtaSection,
@@ -13,14 +11,11 @@ import MarqueeDivider from '@/components/ui/marquee-divider'
 import { ChatWidget } from '@/components/chat/chat-widget'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/')({ component: App })
+export const Route = createFileRoute('/_pages/')({ component: App })
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      {/* Sticky Header - Fixed at top across all sections */}
-      <Header />
-
+    <div className="flex flex-col bg-background">
       <HeroSection />
 
       {/* Menu Section - Overlaps into hero */}
@@ -54,7 +49,6 @@ function App() {
         backgroundColor="#F6EFE3"
       />
       <CtaSection />
-      <Footer />
       <ChatWidget />
     </div>
   )

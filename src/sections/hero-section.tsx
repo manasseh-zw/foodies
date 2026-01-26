@@ -49,6 +49,10 @@ export function HeroSection() {
                 <img
                   src="/assets/burger&fries&callout.webp"
                   alt="Delicious burger"
+                  loading="eager"
+                  // @ts-expect-error - fetchPriority is valid HTML but not typed in React
+                  fetchpriority="high"
+                  decoding="async"
                   className="w-full md:min-w-[120%] max-w-none md:-mr-[20%] object-contain"
                 />
               </div>

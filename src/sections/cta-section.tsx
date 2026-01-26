@@ -9,6 +9,8 @@ export function CtaSection() {
           className="size-full object-cover"
           src="/assets/waiter.jpg"
           alt="Friendly server providing excellent customer service"
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <div className="relative mx-auto max-w-7xl py-20 sm:py-32 lg:px-8 lg:py-40">

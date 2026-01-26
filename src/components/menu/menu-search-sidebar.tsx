@@ -6,7 +6,6 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/animate-ui/button'
 import type { MenuCategory } from '@/lib/data'
-import type { SortOption } from './menu-search-grid'
 import {
   FamilyDrawerAnimatedContent,
   FamilyDrawerAnimatedWrapper,
@@ -23,19 +22,15 @@ import { Drawer } from 'vaul'
 type MobileFiltersViewProps = {
   categories: MenuCategory[]
   selectedCategories: string[]
-  sortOption: SortOption
   onCategoryToggle: (categoryId: string) => void
-  onSortChange: (option: SortOption) => void
 }
 
 type MenuSearchSidebarProps = {
   categories: MenuCategory[]
   searchQuery: string
   selectedCategories: string[]
-  sortOption: SortOption
   onSearchChange: (query: string) => void
   onCategoryToggle: (categoryId: string) => void
-  onSortChange: (option: SortOption) => void
   onSearch: () => void
   onClearAll: () => void
   onClearFilters: () => void
@@ -46,10 +41,8 @@ function MenuSearchSidebar({
   categories,
   searchQuery,
   selectedCategories,
-  sortOption,
   onSearchChange,
   onCategoryToggle,
-  onSortChange,
   onSearch,
   onClearAll,
   onClearFilters,
@@ -62,9 +55,7 @@ function MenuSearchSidebar({
       <MobileFiltersView
         categories={categories}
         selectedCategories={selectedCategories}
-        sortOption={sortOption}
         onCategoryToggle={onCategoryToggle}
-        onSortChange={onSortChange}
       />
     ),
   }
@@ -76,7 +67,7 @@ function MenuSearchSidebar({
         <div className="relative flex-1">
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Search menu..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             className="w-full bg-card border border-border rounded-xl px-4 py-3 pr-11 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all text-base"
@@ -171,22 +162,14 @@ function MenuSearchSidebar({
 function MobileFiltersView({
   categories,
   selectedCategories,
-  sortOption,
   onCategoryToggle,
-  onSortChange,
 }: MobileFiltersViewProps) {
   const [localSelectedCategories, setLocalSelectedCategories] =
     React.useState<string[]>(selectedCategories)
-  const [localSortOption, setLocalSortOption] =
-    React.useState<SortOption>(sortOption)
 
   React.useEffect(() => {
     setLocalSelectedCategories(selectedCategories)
   }, [selectedCategories])
-
-  React.useEffect(() => {
-    setLocalSortOption(sortOption)
-  }, [sortOption])
 
   const handleLocalCategoryToggle = (categoryId: string) => {
     setLocalSelectedCategories((prev) =>
@@ -207,60 +190,14 @@ function MobileFiltersView({
         onCategoryToggle(categoryId)
       }
     })
-
-    if (localSortOption !== sortOption) {
-      onSortChange(localSortOption)
-    }
   }
 
   return (
     <div className="relative flex h-full flex-col">
-      {/* Sort Options */}
-      <div className="mb-6 shrink-0">
-        <h3 className="font-display font-bold text-foreground text-base mb-3">
-          Sort By
-        </h3>
-        <div className="flex gap-2">
-          <button
-            onClick={() => setLocalSortOption('a-z')}
-            className={cn(
-              'flex-1 px-4 py-2.5 rounded-xl font-display text-sm transition-all duration-200',
-              localSortOption === 'a-z'
-                ? 'bg-secondary text-secondary-foreground shadow-md'
-                : 'bg-card text-foreground border border-border hover:border-primary/50 hover:shadow-sm',
-            )}
-          >
-            A - Z
-          </button>
-          <button
-            onClick={() => setLocalSortOption('default')}
-            className={cn(
-              'flex-1 px-4 py-2.5 rounded-xl font-display text-sm transition-all duration-200',
-              localSortOption === 'default'
-                ? 'bg-secondary text-secondary-foreground shadow-md'
-                : 'bg-card text-foreground border border-border hover:border-primary/50 hover:shadow-sm',
-            )}
-          >
-            Default
-          </button>
-          <button
-            onClick={() => setLocalSortOption('popular')}
-            className={cn(
-              'flex-1 px-4 py-2.5 rounded-xl font-display text-sm transition-all duration-200',
-              localSortOption === 'popular'
-                ? 'bg-secondary text-secondary-foreground shadow-md'
-                : 'bg-card text-foreground border border-border hover:border-primary/50 hover:shadow-sm',
-            )}
-          >
-            Popular
-          </button>
-        </div>
-      </div>
-
       {/* Categories */}
       <div className="mb-6 flex-1 min-h-0 overflow-y-auto">
         <h3 className="font-display font-bold text-foreground text-base mb-3">
-          Categories
+          Filter by Category
         </h3>
         <div className="space-y-2.5">
           {categories.map((category) => (
@@ -355,3 +292,5 @@ function CloseIcon({ className }: { className?: string }) {
 }
 
 export { MenuSearchSidebar }
+export type { MenuSearchSidebarProps }
+

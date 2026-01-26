@@ -77,6 +77,8 @@ function MenuSearchCard({
         <motion.img
           src={item.image}
           alt={item.name}
+          loading="lazy"
+          decoding="async"
           className="relative z-10 w-[75%] h-[75%] object-contain drop-shadow-xl"
           initial={false}
           animate={{

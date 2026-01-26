@@ -3,8 +3,8 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { MenuSearchSidebar } from './menu-search-sidebar'
-import { MenuSearchGrid, type SortOption } from './menu-search-grid'
-import { menuCategories, getAllMenuItems, type MenuItem } from '@/lib/data'
+import { MenuSearchGrid } from './menu-search-grid'
+import { menuCategories, getAllMenuItems } from '@/lib/data'
 
 type MenuSearchProps = {
   className?: string
@@ -15,7 +15,6 @@ function MenuSearch({ className }: MenuSearchProps) {
   const [selectedCategories, setSelectedCategories] = React.useState<string[]>(
     [],
   )
-  const [sortOption, setSortOption] = React.useState<SortOption>('default')
 
   const allItems = React.useMemo(() => getAllMenuItems(), [])
 
@@ -36,7 +35,7 @@ function MenuSearch({ className }: MenuSearchProps) {
     })
   }, [allItems, searchQuery, selectedCategories])
 
-  // Calculate visible keys for FlipReveal
+  // Calculate visible keys for animation
   const visibleKeys = React.useMemo(() => {
     if (searchQuery === '' && selectedCategories.length === 0) {
       return ['all']
@@ -59,7 +58,6 @@ function MenuSearch({ className }: MenuSearchProps) {
   const handleClearAll = () => {
     setSearchQuery('')
     setSelectedCategories([])
-    setSortOption('default')
   }
 
   const handleClearFilters = () => {
@@ -69,7 +67,7 @@ function MenuSearch({ className }: MenuSearchProps) {
   return (
     <div
       className={cn(
-        'flex h-[calc(100svh-6rem)] max-h-[calc(100svh-6rem)] flex-col gap-6 overflow-hidden lg:flex-row lg:gap-8',
+        'flex h-[calc(100svh-22rem)] max-h-[calc(100svh-22rem)] flex-col gap-6 overflow-hidden lg:flex-row lg:gap-8',
         className,
       )}
     >
@@ -79,10 +77,8 @@ function MenuSearch({ className }: MenuSearchProps) {
           categories={menuCategories}
           searchQuery={searchQuery}
           selectedCategories={selectedCategories}
-          sortOption={sortOption}
           onSearchChange={setSearchQuery}
           onCategoryToggle={handleCategoryToggle}
-          onSortChange={setSortOption}
           onSearch={handleSearch}
           onClearAll={handleClearAll}
           onClearFilters={handleClearFilters}
@@ -94,8 +90,6 @@ function MenuSearch({ className }: MenuSearchProps) {
         <MenuSearchGrid
           items={allItems}
           visibleKeys={visibleKeys}
-          sortOption={sortOption}
-          onSortChange={setSortOption}
         />
       </div>
     </div>
@@ -103,3 +97,4 @@ function MenuSearch({ className }: MenuSearchProps) {
 }
 
 export { MenuSearch }
+

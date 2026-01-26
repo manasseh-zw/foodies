@@ -1,17 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Header } from '@/components/header'
-import { Footer } from '@/components/layout/footer'
 import { Button } from '@/components/ui/button'
 
-export const Route = createFileRoute('/contact')({
+export const Route = createFileRoute('/_pages/contact')({
   component: ContactPage,
 })
 
 function ContactPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <Header title="Get in touch" />
-      <main className="flex-1">
+    <div className="flex flex-col bg-background text-foreground">
+      {/* pt-20 accounts for fixed navbar height */}
+      <main className="flex-1 pt-20">
         <div className="relative isolate">
           <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
             <div className="relative px-6 pt-16 pb-16 sm:pt-20 sm:pb-20 lg:static lg:px-8 lg:pt-32 lg:pb-32">
@@ -247,7 +245,6 @@ function ContactPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

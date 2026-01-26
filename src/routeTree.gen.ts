@@ -9,86 +9,109 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as MenuRouteImport } from './routes/menu'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as PagesRouteImport } from './routes/_pages'
+import { Route as PagesIndexRouteImport } from './routes/_pages/index'
+import { Route as PagesMenuRouteImport } from './routes/_pages/menu'
+import { Route as PagesContactRouteImport } from './routes/_pages/contact'
 
-const MenuRoute = MenuRouteImport.update({
-  id: '/menu',
-  path: '/menu',
+const PagesRoute = PagesRouteImport.update({
+  id: '/_pages',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndexRoute = IndexRouteImport.update({
+const PagesIndexRoute = PagesIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => PagesRoute,
+} as any)
+const PagesMenuRoute = PagesMenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => PagesRoute,
+} as any)
+const PagesContactRoute = PagesContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => PagesRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/menu': typeof MenuRoute
+  '/contact': typeof PagesContactRoute
+  '/menu': typeof PagesMenuRoute
+  '/': typeof PagesIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/menu': typeof MenuRoute
+  '/contact': typeof PagesContactRoute
+  '/menu': typeof PagesMenuRoute
+  '/': typeof PagesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/menu': typeof MenuRoute
+  '/_pages': typeof PagesRouteWithChildren
+  '/_pages/contact': typeof PagesContactRoute
+  '/_pages/menu': typeof PagesMenuRoute
+  '/_pages/': typeof PagesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contact' | '/menu'
+  fullPaths: '/contact' | '/menu' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contact' | '/menu'
-  id: '__root__' | '/' | '/contact' | '/menu'
+  to: '/contact' | '/menu' | '/'
+  id: '__root__' | '/_pages' | '/_pages/contact' | '/_pages/menu' | '/_pages/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  ContactRoute: typeof ContactRoute
-  MenuRoute: typeof MenuRoute
+  PagesRoute: typeof PagesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/menu': {
-      id: '/menu'
-      path: '/menu'
-      fullPath: '/menu'
-      preLoaderRoute: typeof MenuRouteImport
+    '/_pages': {
+      id: '/_pages'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof PagesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
+    '/_pages/': {
+      id: '/_pages/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof PagesIndexRouteImport
+      parentRoute: typeof PagesRoute
+    }
+    '/_pages/menu': {
+      id: '/_pages/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof PagesMenuRouteImport
+      parentRoute: typeof PagesRoute
+    }
+    '/_pages/contact': {
+      id: '/_pages/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof PagesContactRouteImport
+      parentRoute: typeof PagesRoute
     }
   }
 }
 
+interface PagesRouteChildren {
+  PagesContactRoute: typeof PagesContactRoute
+  PagesMenuRoute: typeof PagesMenuRoute
+  PagesIndexRoute: typeof PagesIndexRoute
+}
+
+const PagesRouteChildren: PagesRouteChildren = {
+  PagesContactRoute: PagesContactRoute,
+  PagesMenuRoute: PagesMenuRoute,
+  PagesIndexRoute: PagesIndexRoute,
+}
+
+const PagesRouteWithChildren = PagesRoute._addFileChildren(PagesRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  ContactRoute: ContactRoute,
-  MenuRoute: MenuRoute,
+  PagesRoute: PagesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

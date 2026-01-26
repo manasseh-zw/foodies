@@ -85,6 +85,8 @@ export function MenuShowcase() {
               <img
                 src={showcaseImages[0].src}
                 alt={showcaseImages[0].alt}
+                loading="lazy"
+                decoding="async"
                 className={showcaseImages[0].className}
               />
             </div>
@@ -96,6 +98,8 @@ export function MenuShowcase() {
                 <img
                   src={showcaseImages[1].src}
                   alt={showcaseImages[1].alt}
+                  loading="lazy"
+                  decoding="async"
                   className={showcaseImages[1].className}
                 />
               </div>
@@ -105,6 +109,8 @@ export function MenuShowcase() {
                 <img
                   src={showcaseImages[2].src}
                   alt={showcaseImages[2].alt}
+                  loading="lazy"
+                  decoding="async"
                   className={showcaseImages[2].className}
                 />
               </div>
@@ -114,6 +120,8 @@ export function MenuShowcase() {
                 <img
                   src={showcaseImages[3].src}
                   alt={showcaseImages[3].alt}
+                  loading="lazy"
+                  decoding="async"
                   className={showcaseImages[3].className}
                 />
               </div>
