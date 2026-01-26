@@ -18,7 +18,7 @@ function MenuPage() {
       />
 
       {/* Menu Search Experience */}
-      <main className="flex-1 container mx-auto py-8 px-4 lg:py-12">
+      <main className=" flex-1 container mx-auto py-8 px-4 lg:py-12">
         <MenuSearch />
       </main>
     </div>
