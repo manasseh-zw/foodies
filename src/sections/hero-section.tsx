@@ -50,8 +50,7 @@ export function HeroSection() {
                   src="/assets/burger&fries&callout.webp"
                   alt="Delicious burger"
                   loading="eager"
-                  // @ts-expect-error - fetchPriority is valid HTML but not typed in React
-                  fetchpriority="high"
+                  fetchPriority="high"
                   decoding="async"
                   className="w-full md:min-w-[120%] max-w-none md:-mr-[20%] object-contain"
                 />

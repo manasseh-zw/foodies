@@ -197,8 +197,7 @@ const OptimizedImage = forwardRef<HTMLImageElement, OptimizedImageProps>(
             src={src}
             alt={alt}
             loading={loading}
-            // @ts-expect-error - fetchPriority is a valid HTML attribute but not typed in React yet
-            fetchpriority={fetchPriority}
+            fetchPriority={fetchPriority}
             decoding={decoding}
             width={width}
             height={height}

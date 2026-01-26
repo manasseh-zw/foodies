@@ -2,19 +2,18 @@ import { Logo } from '@/components/logo'
 import { NavbarWithMenu, NavbarMenuSection } from '@/components/ui/navbar-menu'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
-  Store01Icon,
-  DeliveryTruck01Icon,
-  Time01Icon,
   RestaurantTableIcon,
   CoffeeBeansIcon,
   DrinkIcon,
-  BookOpen01Icon,
-  ChefHatIcon,
-  StarIcon,
 } from '@hugeicons/core-free-icons'
 import { Button } from '@/components/ui/button'
 
 const sections: NavbarMenuSection[] = [
+  {
+    id: 'home',
+    directLink: '/',
+    links: [],
+  },
   {
     id: 'locations',
     mapEmbed:
@@ -49,31 +48,6 @@ const sections: NavbarMenuSection[] = [
       },
     ],
   },
-  {
-    id: 'about',
-    directLink: '/#about',
-    gridLayout: 'grid grid-cols-3 gap-4',
-    links: [
-      {
-        label: 'Our Story',
-        href: '/about',
-        description: 'Learn about our journey',
-        icon: <HugeiconsIcon icon={BookOpen01Icon} size={20} />,
-      },
-      {
-        label: 'Chef Team',
-        href: '/chefs',
-        description: 'Meet our culinary experts',
-        icon: <HugeiconsIcon icon={ChefHatIcon} size={20} />,
-      },
-      {
-        label: 'Reviews',
-        href: '/reviews',
-        description: 'What people are saying',
-        icon: <HugeiconsIcon icon={StarIcon} size={20} />,
-      },
-    ],
-  },
 ]
 
 interface HeaderProps {
@@ -84,7 +58,11 @@ export function Header({ className }: HeaderProps) {
   return (
     <NavbarWithMenu
       sections={sections}
-      logo={<Logo className="text-3xl text-secondary-foreground" />}
+      logo={
+        <a href="/">
+          <Logo className="text-3xl text-secondary-foreground" />
+        </a>
+      }
       ctaButton={
         <a href="/contact">
           <Button variant="default" size="default">
