@@ -287,7 +287,7 @@ function ProductModalContent({ item }: { item: MenuItem }) {
 function ProductModal({ item, children, className }: ProductModalProps) {
   return (
     <Modal>
-      <ModalTrigger className={cn('p-0 m-0 bg-transparent', className)}>
+      <ModalTrigger className={cn('p-0 m-0 bg-transparent overflow-visible', className)}>
         {children}
       </ModalTrigger>
       <ModalBody className="md:max-w-4xl md:max-h-[85vh] max-h-[90vh] min-h-0 rounded-2xl overflow-hidden">

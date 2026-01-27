@@ -67,7 +67,7 @@ function MenuSearch({ className }: MenuSearchProps) {
   return (
     <div
       className={cn(
-        'flex h-[calc(100svh-12rem)] min-h-[500px] flex-col gap-6 overflow-hidden lg:flex-row lg:h-[850px] lg:gap-8',
+        'flex h-[calc(100svh-8rem)] min-h-[500px] flex-col gap-2 overflow-hidden lg:flex-row lg:h-[850px] lg:gap-8',
         className,
       )}
     >
