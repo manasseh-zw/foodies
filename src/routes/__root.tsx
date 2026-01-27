@@ -26,7 +26,7 @@ export const Route = createRootRoute({
       // Performance hints
       {
         name: 'theme-color',
-        content: '#F97316', // Primary color for browser chrome
+        content: '#FFC52A', // Primary color for browser chrome
       },
     ],
     links: [

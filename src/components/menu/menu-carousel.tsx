@@ -163,7 +163,7 @@ function MenuCarousel({ className }: { className?: string }) {
   }, [activeCategory, emblaApi, baseItems.length])
 
   return (
-    <div className={cn('w-full bg-[#c3a3d6]', className)}>
+    <div className={cn('w-full max-w-full overflow-hidden bg-[#c3a3d6]', className)}>
       {/* Marquee */}
       <div className="bg-[#c3a3d6] text-secondary overflow-hidden">
         <Marquee speed="slow" items={marqueeItems} />
@@ -181,8 +181,8 @@ function MenuCarousel({ className }: { className?: string }) {
         </div>
 
         {/* Carousel content */}
-        <div className="relative [--slide-gap:1.5rem] sm:[--slide-gap:2.5rem] lg:[--slide-gap:5rem]">
-          <div className="overflow-hidden" ref={emblaRef}>
+        <div className="relative w-full max-w-full [--slide-gap:1.5rem] sm:[--slide-gap:2.5rem] lg:[--slide-gap:5rem]">
+          <div className="overflow-hidden w-full max-w-full" ref={emblaRef}>
             <div className="flex touch-pan-y touch-pinch-zoom ml-[calc(var(--slide-gap)*-1)]">
               {items.map((item, index) => {
                 const isActive = index === selectedIndex
@@ -204,7 +204,7 @@ function MenuCarousel({ className }: { className?: string }) {
         </div>
 
         {/* Carousel controller */}
-        <div className="flex justify-center mt-6 sm:mt-6 px-2 sm:px-4 sm:mb-3">
+        <div className="flex justify-center mt-6 sm:mt-6 px-2 sm:px-4 sm:mb-3 ">
           <div className="inline-flex items-center bg-secondary rounded-lg p-1 shadow-2xl">
             {/* Prev Button */}
             <Button
@@ -218,18 +218,45 @@ function MenuCarousel({ className }: { className?: string }) {
 
             {/* Dots */}
             <div className="flex items-center gap-1.5 mx-1">
-              {baseItems.map((_, index) => (
-                <DotButton
-                  key={index}
-                  selected={index === selectedIndex % baseItems.length}
-                  onClick={() => {
-                    // Find the closest instance of this index
-                    if (!emblaApi) return
-                    const targetIndex = index + baseItems.length // Target the middle set
-                    emblaApi.scrollTo(targetIndex)
-                  }}
-                />
-              ))}
+              {(() => {
+                const totalItems = baseItems.length
+                const maxDots = 8
+
+                if (totalItems <= maxDots) {
+                  return baseItems.map((_, index) => (
+                    <DotButton
+                      key={index}
+                      selected={index === selectedIndex % totalItems}
+                      onClick={() => {
+                        if (!emblaApi) return
+                        const targetIndex = index + totalItems
+                        emblaApi.scrollTo(targetIndex)
+                      }}
+                    />
+                  ))
+                }
+
+                const itemsPerDot = Math.ceil(totalItems / maxDots)
+                const numDots = Math.ceil(totalItems / itemsPerDot)
+
+                return Array.from({ length: numDots }).map((_, dotIndex) => {
+                  const currentItemIndex = selectedIndex % totalItems
+                  const activeDotIndex = Math.floor(currentItemIndex / itemsPerDot)
+
+                  return (
+                    <DotButton
+                      key={dotIndex}
+                      selected={dotIndex === activeDotIndex}
+                      onClick={() => {
+                        if (!emblaApi) return
+                        const targetItemIndex = dotIndex * itemsPerDot
+                        const targetIndex = targetItemIndex + totalItems
+                        emblaApi.scrollTo(targetIndex)
+                      }}
+                    />
+                  )
+                })
+              })()}
             </div>
 
             {/* Next Button */}
