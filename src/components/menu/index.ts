@@ -5,6 +5,7 @@ export { MenuTabs } from './menu-tabs'
 export { MenuSearch } from './menu-search'
 export { MenuSearchSidebar } from './menu-search-sidebar'
 export { MenuSearchGrid } from './menu-search-grid'
+export { ProductModal } from './product-modal'
 
 // Re-export types and data from centralized location
 export {

@@ -9,6 +9,7 @@ import {
   getDisplayPrice,
   getVariantLabels,
 } from '@/lib/data'
+import { ProductModal } from './product-modal'
 
 // Organic, earthy color palette for splash backgrounds
 const SPLASH_COLORS = ['#E8A08A', '#B1D353', '#C9B08E', '#A2B29F'] as const
@@ -32,7 +33,7 @@ function MenuSearchCard({
   const splashColor = SPLASH_COLORS[colorIndex % SPLASH_COLORS.length]
   const variantLabels = getVariantLabels(item)
 
-  return (
+  const cardContent = (
     <motion.div
       className={cn(
         'relative flex flex-col items-center rounded-2xl bg-transparent transition-colors w-full cursor-pointer overflow-visible',
@@ -108,6 +109,12 @@ function MenuSearchCard({
         </span>
       </div>
     </motion.div>
+  )
+
+  return (
+    <ProductModal item={item}>
+      {cardContent}
+    </ProductModal>
   )
 }
 
