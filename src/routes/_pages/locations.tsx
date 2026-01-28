@@ -8,24 +8,25 @@ export const Route = createFileRoute('/_pages/locations')({
 
 // Location data - can be externalized if needed
 const locationData = {
-  name: 'Karigamombe Center',
+  businessName: 'Foodies Pvt Ltd',
+  name: '15 Karigamombe Shop',
   tagline: 'Goodbite, Good Vibes!',
   description:
-    "We're at Karigamombe Center — corner of Samora Machel Avenue & Julius Nyerere Way, Harare CBD. Sit-in and takeaway available. Come through for Goodbite, Good Vibes!",
+    "We're at 15 Karigamombe Shop — corner of Samora Machel Avenue & Julius Nyerere Way, Harare CBD. Sit-in and takeaway available. Come through for Goodbite, Good Vibes!",
   address: {
-    line1: 'Karigamombe Center',
+    line1: '15 Karigamombe Shop',
     line2: 'Corner of Samora Machel Avenue',
     line3: '& Julius Nyerere Way',
     city: 'Harare CBD, Zimbabwe',
   },
-  hours: {
-    label: 'Open Daily',
-    time: '08:00 – 21:00',
-  },
+  hours: [
+    { days: 'Mon – Thu', time: '7:00 AM – 9:00 PM' },
+    { days: 'Fri – Sat', time: '7:00 AM – 10:00 PM' },
+  ],
   services: ['Sit-in', 'Takeaway'],
   contact: {
-    phone: '+263 78 123 4567',
-    email: 'hello@foodies.co.zw',
+    phone: '+263 77 001 0502',
+    email: 'karigamombe@foodieszim.co.zw',
   },
   mapEmbed:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2119.2062666348206!2d31.04780408624462!3d-17.82688018760249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931bb891d2f938f%3A0xae6d8fac6acf2952!2sVOLON%20DESIGNS%20%26%20BRANDING!5e1!3m2!1sen!2szw!4v1769622804201!5m2!1sen!2szw',
@@ -119,7 +120,7 @@ function LocationsPage() {
           </div>
 
           {/* Details Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-3">
             {/* Address */}
             <div className="flex gap-4">
               <div className="shrink-0">
@@ -156,12 +157,14 @@ function LocationsPage() {
                 <h4 className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-2">
                   Hours & Services
                 </h4>
-                <p className="text-foreground font-medium mb-1">
-                  {locationData.hours.label}:{' '}
-                  <span className="text-primary font-bold">
-                    {locationData.hours.time}
-                  </span>
-                </p>
+                <div className="space-y-1 mb-2">
+                  {locationData.hours.map((schedule) => (
+                    <p key={schedule.days} className="text-foreground font-medium">
+                      <span className="text-muted-foreground">{schedule.days}:</span>{' '}
+                      <span className="text-primary font-bold">{schedule.time}</span>
+                    </p>
+                  ))}
+                </div>
                 <div className="flex flex-wrap gap-2 mt-2">
                   {locationData.services.map((service) => (
                     <span
