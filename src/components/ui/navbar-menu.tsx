@@ -7,194 +7,25 @@ import { Button } from '@/components/ui/button'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { CancelSquareIcon } from '@hugeicons/core-free-icons'
 
-export interface NavbarMenuLink {
+export interface NavLink {
+  id: string
   label: string
   href: string
-  icon?: React.ReactNode
-  external?: boolean
-  description?: string
-  backgroundImage?: string
-  rowSpan?: number
-  mapEmbed?: string
 }
 
-export interface NavbarMenuSection {
-  id: string
-  links: NavbarMenuLink[]
-  gridLayout?: string
-  mapEmbed?: string
-  mapLink?: string
-  directLink?: string
-}
-
-interface NavbarMenuProps {
-  activeMenu: string | null
-  sections: NavbarMenuSection[]
-  onClose?: () => void
-}
-
-export function NavbarMenu({ activeMenu, sections, onClose }: NavbarMenuProps) {
-  const activeSection = sections.find((section) => section.id === activeMenu)
-  const [hoveredMapLink, setHoveredMapLink] = React.useState<string | null>(
-    null,
-  )
-
-  if (!activeMenu || !activeSection) {
-    return null
-  }
-
-  if (
-    activeSection.directLink ||
-    (activeSection.links.length === 0 && !activeSection.mapEmbed)
-  ) {
-    return null
-  }
-
-  if (activeSection.mapEmbed) {
-    return (
-      <AnimatePresence>
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="absolute left-0 right-0 top-full mt-2 px-6 flex justify-center"
-          onMouseLeave={onClose}
-        >
-          <div className="bg-background border-2 border-primary rounded-lg overflow-hidden shadow-2xl">
-            <iframe
-              src={activeSection.mapEmbed}
-              width="500"
-              height="375"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Location Map"
-            />
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    )
-  }
-
-  return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.2, ease: 'easeOut' }}
-        className="absolute left-0 right-0 top-full mt-2 px-6"
-        onMouseLeave={onClose}
-      >
-        <div className="container mx-auto">
-          <div className="bg-background border border-border rounded-xl p-6 max-w-4xl">
-            <div
-              className={cn(
-                'gap-4',
-                activeSection.gridLayout || 'grid grid-cols-2',
-              )}
-            >
-              {activeSection.links.map((link) => (
-                <div
-                  key={`${activeSection.id}-${link.label}`}
-                  className="relative"
-                  onMouseEnter={() =>
-                    link.mapEmbed && setHoveredMapLink(link.label)
-                  }
-                  onMouseLeave={() => link.mapEmbed && setHoveredMapLink(null)}
-                >
-                  <a
-                    href={link.href}
-                    target={link.external ? '_blank' : undefined}
-                    rel={link.external ? 'noopener noreferrer' : undefined}
-                    className={cn(
-                      'group relative overflow-hidden rounded-lg border border-border bg-card p-4 transition-colors hover:bg-accent hover:border-accent-foreground/20 block',
-                      link.rowSpan === 2 && 'row-span-2',
-                    )}
-                    style={
-                      link.backgroundImage
-                        ? {
-                            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url(${link.backgroundImage})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                          }
-                        : undefined
-                    }
-                  >
-                    <div className="relative z-10">
-                      {link.icon && (
-                        <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                          {link.icon}
-                        </div>
-                      )}
-                      <h3
-                        className={cn(
-                          'font-medium mb-1',
-                          link.backgroundImage && 'text-white',
-                        )}
-                      >
-                        {link.label}
-                      </h3>
-                      {link.description && (
-                        <p
-                          className={cn(
-                            'text-sm text-muted-foreground',
-                            link.backgroundImage && 'text-white/80',
-                          )}
-                        >
-                          {link.description}
-                        </p>
-                      )}
-                    </div>
-                  </a>
-                  {link.mapEmbed && hoveredMapLink === link.label && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute left-full top-0 ml-4 z-50 pointer-events-none"
-                    >
-                      <div className="bg-background border-2 border-primary rounded-lg overflow-hidden shadow-2xl">
-                        <iframe
-                          src={link.mapEmbed}
-                          width="400"
-                          height="300"
-                          style={{ border: 0 }}
-                          allowFullScreen
-                          loading="lazy"
-                          referrerPolicy="no-referrer-when-downgrade"
-                          title={link.label}
-                        />
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </AnimatePresence>
-  )
-}
-
-interface NavbarWithMenuProps {
-  sections: NavbarMenuSection[]
+interface NavbarProps {
+  links: NavLink[]
   logo?: React.ReactNode
   ctaButton?: React.ReactNode
   className?: string
 }
 
-export function NavbarWithMenu({
-  sections,
+export function Navbar({
+  links,
   logo,
   ctaButton,
   className,
-}: NavbarWithMenuProps) {
-  const [activeMenu, setActiveMenu] = React.useState<string | null>(null)
+}: NavbarProps) {
   const [isScrolled, setIsScrolled] = React.useState(false)
   const [isMobileOpen, setIsMobileOpen] = React.useState(false)
 
@@ -225,26 +56,6 @@ export function NavbarWithMenu({
     }
   }, [isMobileOpen])
 
-  const mobileLinks = React.useMemo(
-    () =>
-      sections
-        .map((section) => ({
-          label: section.id
-            .split('-')
-            .map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
-            .join(' '),
-          href:
-            section.directLink ||
-            section.mapLink ||
-            section.links[0]?.href ||
-            '#',
-          external: !!section.mapLink,
-        }))
-        .filter((link) => link.href !== '#'),
-    [sections],
-  )
-
-  // Always animate based on scroll, regardless of screen size
   return (
     <>
       <div className="fixed top-0 left-0 right-0 z-50 w-full flex justify-center pointer-events-none">
@@ -273,28 +84,15 @@ export function NavbarWithMenu({
             <div className="flex items-center justify-between relative">
               {/* Left navigation links */}
               <nav className="hidden md:flex items-center gap-6 flex-1">
-                {sections.map((section) =>
-                  section.mapLink || section.directLink ? (
-                    <a
-                      key={section.id}
-                      href={section.mapLink || section.directLink}
-                      target={section.mapLink ? '_blank' : undefined}
-                      rel={section.mapLink ? 'noopener noreferrer' : undefined}
-                      onMouseEnter={() => setActiveMenu(section.id)}
-                      className="text-base font-display font-medium hover:text-primary transition-colors capitalize py-2"
-                    >
-                      {section.id}
-                    </a>
-                  ) : (
-                    <button
-                      key={section.id}
-                      onMouseEnter={() => setActiveMenu(section.id)}
-                      className="text-base font-display font-medium hover:text-primary transition-colors capitalize py-2"
-                    >
-                      {section.id}
-                    </button>
-                  ),
-                )}
+                {links.map((link) => (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    className="text-base font-display font-medium hover:text-primary transition-colors capitalize py-2"
+                  >
+                    {link.label}
+                  </a>
+                ))}
               </nav>
 
               {/* Centered Logo */}
@@ -332,13 +130,6 @@ export function NavbarWithMenu({
               </button>
             </div>
           </div>
-
-          {/* Dropdown Menu */}
-          <NavbarMenu
-            activeMenu={activeMenu}
-            sections={sections}
-            onClose={() => setActiveMenu(null)}
-          />
         </motion.header>
       </div>
 
@@ -376,12 +167,10 @@ export function NavbarWithMenu({
               </div>
               <div className="px-4 pt-8">
                 <div className="grid gap-6 text-4xl font-display font-black uppercase text-primary">
-                  {mobileLinks.map((link) => (
+                  {links.map((link) => (
                     <a
-                      key={link.href}
+                      key={link.id}
                       href={link.href}
-                      target={link.external ? '_blank' : undefined}
-                      rel={link.external ? 'noopener noreferrer' : undefined}
                       className="flex items-center gap-3 tracking-tight"
                       onClick={() => setIsMobileOpen(false)}
                     >
