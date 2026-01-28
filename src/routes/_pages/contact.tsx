@@ -1,11 +1,48 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
+import * as React from 'react'
 
 export const Route = createFileRoute('/_pages/contact')({
   component: ContactPage,
 })
 
+const FOODIES_EMAIL = 'karigamombe@foodieszim.co.zw'
+const FOODIES_PHONE = '+263770010502'
+
 function ContactPage() {
+  const [formData, setFormData] = React.useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    message: '',
+  })
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    // Build the mailto link with form data
+    const subject = `Contact from ${formData.firstName} ${formData.lastName}`
+    const body = `Name: ${formData.firstName} ${formData.lastName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+
+Message:
+${formData.message}`
+
+    const mailtoLink = `mailto:${FOODIES_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+
+    // Open the user's email client
+    window.location.href = mailtoLink
+  }
+
   return (
     <div className="flex flex-col bg-background text-foreground">
       {/* pt-20 accounts for fixed navbar height */}
@@ -56,9 +93,9 @@ function ContactPage() {
                   Get in touch
                 </h2>
                 <p className="mt-6 text-lg/8 text-muted-foreground">
-                  Proin volutpat consequat porttitor cras nullam gravida at.
-                  Orci molestie a eu arcu. Sed ut tincidunt integer elementum id
-                  sem. Arcu sed malesuada et magna.
+                  Have a question, feedback, or just want to say hello? We'd
+                  love to hear from you! Drop us a message and we'll get back to
+                  you as soon as possible.
                 </p>
                 <dl className="mt-10 space-y-4 text-base/7 text-muted-foreground">
                   <div className="flex gap-x-4">
@@ -81,9 +118,11 @@ function ContactPage() {
                       </svg>
                     </dt>
                     <dd>
-                      545 Mavis Island
+                      15 Karigamombe Shop
                       <br />
-                      Chicago, IL 99191
+                      Corner of Samora Machel Ave & Julius Nyerere Way
+                      <br />
+                      Harare CBD, Zimbabwe
                     </dd>
                   </div>
                   <div className="flex gap-x-4">
@@ -107,10 +146,10 @@ function ContactPage() {
                     </dt>
                     <dd>
                       <a
-                        className="hover:text-foreground"
-                        href="tel:+1 (555) 234-5678"
+                        className="hover:text-foreground transition-colors"
+                        href={`tel:${FOODIES_PHONE}`}
                       >
-                        +1 (555) 234-5678
+                        +263 77 001 0502
                       </a>
                     </dd>
                   </div>
@@ -135,10 +174,10 @@ function ContactPage() {
                     </dt>
                     <dd>
                       <a
-                        className="hover:text-foreground"
-                        href="mailto:hello@example.com"
+                        className="hover:text-foreground transition-colors"
+                        href={`mailto:${FOODIES_EMAIL}`}
                       >
-                        hello@example.com
+                        {FOODIES_EMAIL}
                       </a>
                     </dd>
                   </div>
@@ -146,15 +185,14 @@ function ContactPage() {
               </div>
             </div>
             <form
-              action="#"
-              method="POST"
+              onSubmit={handleSubmit}
               className="px-6 pt-16 pb-16 sm:pt-20 sm:pb-20 lg:px-8 lg:pt-32 lg:pb-32"
             >
               <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                 <div className="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2 sm:gap-y-6">
                   <div>
                     <label
-                      htmlFor="first-name"
+                      htmlFor="firstName"
                       className="block text-sm/6 font-semibold"
                     >
                       First name
@@ -162,16 +200,19 @@ function ContactPage() {
                     <div className="mt-2.5">
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
+                        name="firstName"
+                        id="firstName"
                         autoComplete="given-name"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
+                        required
                         className="block w-full rounded-md border border-border bg-background px-3.5 py-2 text-base text-foreground shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
                   </div>
                   <div>
                     <label
-                      htmlFor="last-name"
+                      htmlFor="lastName"
                       className="block text-sm/6 font-semibold"
                     >
                       Last name
@@ -179,9 +220,12 @@ function ContactPage() {
                     <div className="mt-2.5">
                       <input
                         type="text"
-                        name="last-name"
-                        id="last-name"
+                        name="lastName"
+                        id="lastName"
                         autoComplete="family-name"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
+                        required
                         className="block w-full rounded-md border border-border bg-background px-3.5 py-2 text-base text-foreground shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
@@ -191,7 +235,7 @@ function ContactPage() {
                       htmlFor="email"
                       className="block text-sm/6 font-semibold"
                     >
-                      Email
+                      Your email
                     </label>
                     <div className="mt-2.5">
                       <input
@@ -199,23 +243,28 @@ function ContactPage() {
                         name="email"
                         id="email"
                         autoComplete="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
                         className="block w-full rounded-md border border-border bg-background px-3.5 py-2 text-base text-foreground shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
                   </div>
                   <div className="sm:col-span-2">
                     <label
-                      htmlFor="phone-number"
+                      htmlFor="phone"
                       className="block text-sm/6 font-semibold"
                     >
-                      Phone number
+                      Phone number (optional)
                     </label>
                     <div className="mt-2.5">
                       <input
                         type="tel"
-                        name="phone-number"
-                        id="phone-number"
+                        name="phone"
+                        id="phone"
                         autoComplete="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
                         className="block w-full rounded-md border border-border bg-background px-3.5 py-2 text-base text-foreground shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
@@ -232,6 +281,10 @@ function ContactPage() {
                         name="message"
                         id="message"
                         rows={4}
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="How can we help you?"
                         className="block w-full rounded-md border border-border bg-background px-3.5 py-2 text-base text-foreground shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       />
                     </div>
@@ -240,6 +293,9 @@ function ContactPage() {
                 <div className="mt-6 sm:mt-8 flex justify-end">
                   <Button type="submit">Send message</Button>
                 </div>
+                <p className="mt-4 text-xs text-muted-foreground text-right">
+                  Clicking send will open your email client
+                </p>
               </div>
             </form>
           </div>

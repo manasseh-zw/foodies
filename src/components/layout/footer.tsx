@@ -4,9 +4,6 @@ import { ZimbabweFlagIcon } from '@/components/icons'
 const navLinks = [
   { label: 'Menu', to: '/menu' },
   { label: 'Locations', to: '/locations' },
-  { label: 'About', to: '/about' },
-  { label: 'Reviews', to: '/reviews' },
-  { label: 'Delivery', to: '/delivery' },
   { label: 'Contact', to: '/contact' },
 ]
 
