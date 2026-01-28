@@ -28,7 +28,7 @@ const locationData = {
     email: 'hello@foodies.co.zw',
   },
   mapEmbed:
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4238.408711693214!2d31.042886083412025!3d-17.82704083278533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931a5d8b01c384f%3A0xf7827f9045b50114!2s13th%20floor%20Karigamombe%20building%2C%20East%20wing!5e1!3m2!1sen!2szw!4v1768677283348!5m2!1sen!2szw',
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2119.2062666348206!2d31.04780408624462!3d-17.82688018760249!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1931bb891d2f938f%3A0xae6d8fac6acf2952!2sVOLON%20DESIGNS%20%26%20BRANDING!5e1!3m2!1sen!2szw!4v1769622804201!5m2!1sen!2szw',
   mapLink:
     'https://www.google.com/maps/place/13th+floor+Karigamombe+building,+East+wing/@-17.82704083278533,31.042886083412025,17z/data=!3m1!4b1!4m6!3m5!1s0x1931a5d8b01c384f:0xf7827f9045b50114!8m2!3d-17.82704083278533!4d31.042886083412025!16s%2Fg%2F11j8z3n5qh',
 }
@@ -122,7 +122,7 @@ function LocationsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {/* Address */}
             <div className="flex gap-4">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <LocationIcon className="h-6 w-6 text-primary" />
                 </div>
@@ -147,7 +147,7 @@ function LocationsPage() {
 
             {/* Hours & Services */}
             <div className="flex gap-4">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <ClockIcon className="h-6 w-6 text-primary" />
                 </div>
@@ -177,7 +177,7 @@ function LocationsPage() {
 
             {/* Contact */}
             <div className="flex gap-4">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <PhoneIcon className="h-6 w-6 text-primary" />
                 </div>
