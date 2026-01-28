@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as PagesRouteImport } from './routes/_pages'
 import { Route as PagesIndexRouteImport } from './routes/_pages/index'
 import { Route as PagesMenuRouteImport } from './routes/_pages/menu'
+import { Route as PagesLocationsRouteImport } from './routes/_pages/locations'
 import { Route as PagesContactRouteImport } from './routes/_pages/contact'
 
 const PagesRoute = PagesRouteImport.update({
@@ -28,6 +29,11 @@ const PagesMenuRoute = PagesMenuRouteImport.update({
   path: '/menu',
   getParentRoute: () => PagesRoute,
 } as any)
+const PagesLocationsRoute = PagesLocationsRouteImport.update({
+  id: '/locations',
+  path: '/locations',
+  getParentRoute: () => PagesRoute,
+} as any)
 const PagesContactRoute = PagesContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -36,11 +42,13 @@ const PagesContactRoute = PagesContactRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/contact': typeof PagesContactRoute
+  '/locations': typeof PagesLocationsRoute
   '/menu': typeof PagesMenuRoute
   '/': typeof PagesIndexRoute
 }
 export interface FileRoutesByTo {
   '/contact': typeof PagesContactRoute
+  '/locations': typeof PagesLocationsRoute
   '/menu': typeof PagesMenuRoute
   '/': typeof PagesIndexRoute
 }
@@ -48,15 +56,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_pages': typeof PagesRouteWithChildren
   '/_pages/contact': typeof PagesContactRoute
+  '/_pages/locations': typeof PagesLocationsRoute
   '/_pages/menu': typeof PagesMenuRoute
   '/_pages/': typeof PagesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/contact' | '/menu' | '/'
+  fullPaths: '/contact' | '/locations' | '/menu' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/contact' | '/menu' | '/'
-  id: '__root__' | '/_pages' | '/_pages/contact' | '/_pages/menu' | '/_pages/'
+  to: '/contact' | '/locations' | '/menu' | '/'
+  id:
+    | '__root__'
+    | '/_pages'
+    | '/_pages/contact'
+    | '/_pages/locations'
+    | '/_pages/menu'
+    | '/_pages/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -86,6 +101,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PagesMenuRouteImport
       parentRoute: typeof PagesRoute
     }
+    '/_pages/locations': {
+      id: '/_pages/locations'
+      path: '/locations'
+      fullPath: '/locations'
+      preLoaderRoute: typeof PagesLocationsRouteImport
+      parentRoute: typeof PagesRoute
+    }
     '/_pages/contact': {
       id: '/_pages/contact'
       path: '/contact'
@@ -98,12 +120,14 @@ declare module '@tanstack/react-router' {
 
 interface PagesRouteChildren {
   PagesContactRoute: typeof PagesContactRoute
+  PagesLocationsRoute: typeof PagesLocationsRoute
   PagesMenuRoute: typeof PagesMenuRoute
   PagesIndexRoute: typeof PagesIndexRoute
 }
 
 const PagesRouteChildren: PagesRouteChildren = {
   PagesContactRoute: PagesContactRoute,
+  PagesLocationsRoute: PagesLocationsRoute,
   PagesMenuRoute: PagesMenuRoute,
   PagesIndexRoute: PagesIndexRoute,
 }
@@ -116,12 +140,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-  }
-}
