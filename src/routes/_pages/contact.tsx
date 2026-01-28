@@ -46,58 +46,32 @@ ${formData.message}`
   return (
     <div className="flex flex-col bg-background text-foreground">
       {/* pt-20 accounts for fixed navbar height */}
-      <main className="flex-1 pt-20">
+      <main className="flex-1 pt-24">
         <div className="relative isolate">
           <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
             <div className="relative px-6 pt-16 pb-16 sm:pt-20 sm:pb-20 lg:static lg:px-8 lg:pt-32 lg:pb-32">
               <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
                 <div className="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden bg-muted/40 ring-1 ring-border lg:w-1/2">
-                  <svg
-                    className="absolute inset-0 size-full stroke-border mask-[radial-gradient(100%_100%_at_top_right,white,transparent)]"
-                    aria-hidden="true"
-                  >
-                    <defs>
-                      <pattern
-                        id="contact-grid"
-                        width="200"
-                        height="200"
-                        x="100%"
-                        y="-1"
-                        patternUnits="userSpaceOnUse"
-                      >
-                        <path d="M130 200V.5M.5 .5H200" fill="none" />
-                      </pattern>
-                    </defs>
-                    <rect
-                      width="100%"
-                      height="100%"
-                      strokeWidth="0"
-                      fill="white"
-                    />
-                    <svg
-                      x="100%"
-                      y="-1"
-                      className="overflow-visible fill-muted/40"
-                    >
-                      <path d="M-470.5 0h201v201h-201Z" strokeWidth="0" />
-                    </svg>
-                    <rect
-                      width="100%"
-                      height="100%"
-                      strokeWidth="0"
-                      fill="url(#contact-grid)"
-                    />
-                  </svg>
+                  {/* Doodle background pattern - consistent with site design */}
+                  <div
+                    className="absolute inset-0 opacity-[0.05] pointer-events-none"
+                    style={{
+                      backgroundImage: 'url(/assets/doodle.svg)',
+                      backgroundSize: 'cover',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'center',
+                    }}
+                  />
                 </div>
-                <h2 className="text-4xl font-semibold tracking-tight text-pretty sm:text-5xl">
+                <h2 className="text-4xl font-bold tracking-tight text-pretty sm:text-5xl text-foreground">
                   Get in touch
                 </h2>
-                <p className="mt-6 text-lg/8 text-muted-foreground">
+                <p className="mt-6 text-lg/8 text-foreground/80">
                   Have a question, feedback, or just want to say hello? We'd
                   love to hear from you! Drop us a message and we'll get back to
                   you as soon as possible.
                 </p>
-                <dl className="mt-10 space-y-4 text-base/7 text-muted-foreground">
+                <dl className="mt-10 space-y-4 text-base/7 text-foreground/90">
                   <div className="flex gap-x-4">
                     <dt className="flex-none">
                       <span className="sr-only">Address</span>
